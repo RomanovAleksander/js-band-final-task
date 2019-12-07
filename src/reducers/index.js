@@ -1,12 +1,31 @@
 const initialState = {
-  books: []
+  books: [],
+  loading: true,
+  searchText: '',
+  visibleBooks: null,
+  filterPrice: 'Price'
 };
 
 export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'BOOKS_LOADED':
+  const {type, payload} = action;
+  switch (type) {
+    case 'FETCH_BOOKS_REQUEST':
       return {
-        books: action.payload
+        ...state,
+        books: [],
+        loading: true
+      };
+    case 'FETCH_BOOKS_SUCCESS':
+      return {
+        ...state,
+        books: payload,
+        loading: false
+      };
+    case 'SEARCH_BOOK':
+      return {
+        ...state,
+        searchText: payload.searchText,
+        visibleBooks: payload.books.filter(book => book.title.toLowerCase().includes(payload.searchText.toLowerCase()))
       };
 
     default:
