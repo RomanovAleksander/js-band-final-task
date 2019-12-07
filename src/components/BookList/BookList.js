@@ -1,6 +1,6 @@
 import React from 'react';
-import { BookListItem } from '../BookListItem';
 import { connect } from 'react-redux';
+import { BookListItem } from '../BookListItem';
 
 import StoreService from '../../services/StoreService';
 import { booksLoaded } from "../../actions";

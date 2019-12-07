@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Header } from "../Header";
 import { HomePage, CartPage } from "../../pages";
 
@@ -14,7 +14,6 @@ export const App = () => {
                  component={HomePage}
                  exact
           />
-          {/*<Redirect from="/" to/>*/}
           <Route path="/cart"
                  component={CartPage}
           />
