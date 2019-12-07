@@ -1,5 +1,8 @@
-import React from 'react';
+import React  from 'react';
+import { Cart } from '../components/Cart';
 
 export const CartPage = () => {
-  return <div>Book Page</div>
+  return (
+    <Cart />
+  );
 };

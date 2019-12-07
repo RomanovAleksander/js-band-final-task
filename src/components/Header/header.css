@@ -3,6 +3,7 @@
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
+    border-radius: .25rem;
 }
 
 .shop-header .logo {
@@ -12,9 +13,14 @@
 }
 
 .shop-header .shop-menu {
-    width: 35%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 35%;
+}
+
+.shop-header .shop-menu .menu-item {
+    margin: 0 1rem;
 }
 
 .shop-header .shop-menu a {
@@ -25,4 +31,20 @@
     height: 44px;
     width: 115px;
     font-size: 1.2rem;
+}
+
+.pseudo-avatar {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 1px solid #9d9d9d;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.menu-item .userName {
+    font-size: 1.4rem;
+    font-weight: bold;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './bookListItem.css';
 
 
-export const BookListItem = ({book}) => {
+export const BookListItem = ({book, onView}) => {
   const { title, author, price, cover } = book;
   return (
     <div className="book-list-item">
@@ -15,7 +15,12 @@ export const BookListItem = ({book}) => {
       </div>
       <div className="book-footer">
         <div className="book-price">{price}</div>
-        <button className="btn btn-info add-to-cart">View</button>
+        <button
+          onClick={onView}
+          className="btn btn-info add-to-cart"
+        >
+          View
+        </button>
       </div>
     </div>
   )

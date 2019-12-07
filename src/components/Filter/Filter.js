@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchBook } from "../../actions";
+import './filter.css';
 
 class Filter extends React.Component {
   onSearchChange = ({ target }) => {
@@ -21,10 +22,10 @@ class Filter extends React.Component {
     const { searchText } = this.props;
 
     return (
-      <div className="filter__item">
+      <div className="filter-wrapper">
         <input
           type="search"
-          className="filter__search"
+          className="form-control mr-sm-2"
           placeholder="search by title"
           onChange={this.onSearchChange}
           value={searchText}

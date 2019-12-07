@@ -27,9 +27,17 @@ const filterBook = (books, filterPrice) => ({
   }
 });
 
+const bookShowDetails = (bookId) => {
+  return {
+    type: 'BOOK_SHOW_DETAILS',
+    payload: bookId
+  }
+};
+
 export {
   booksLoaded,
   booksRequested,
   searchBook,
-  filterBook
+  filterBook,
+  bookShowDetails
 }
