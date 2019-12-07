@@ -1,17 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './header.css';
 
-export const Header = ({ userName, userAvatar }) => {
+export const Header = ({userName, userAvatar}) => {
   return (
     <header className="shop-header row">
-      <a href="#" className="logo text-dark">JS BAND STORE / Oleksandr Romanov</a>
+      <Link to="/">
+        <div className="logo text-dark">JS BAND STORE / Oleksandr Romanov</div>
+      </Link>
       <div className="shop-menu row">
-        <a href="#">
-          <i className="cart fa fa-shopping-cart" />
-        </a>
+        <Link to="/cart">
+          <div>
+            <i className="cart fa fa-shopping-cart"/>
+          </div>
+        </Link>
         <button className="btn btn-info">Sign-Out</button>
         <div className="oval">
-          <img src={userAvatar} alt="userAvatar" />
+          <img src={userAvatar} alt="userAvatar"/>
         </div>
         <div className="userName">{userName}</div>
       </div>
