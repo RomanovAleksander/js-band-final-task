@@ -1,0 +1,21 @@
+.filter-wrapper {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.filter-wrapper input {
+    font-size: 1.8rem;
+    height: 42px;
+    max-width: 428px;
+}
+
+.filter-wrapper select {
+    font-size: 1.8rem;
+    height: 42px;
+    max-width: 428px;
+    margin-left: 45px;
+    border-radius: .25rem;
+}

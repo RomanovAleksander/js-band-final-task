@@ -7,14 +7,16 @@ import { booksLoaded, booksRequested } from '../../actions';
 import { Spinner } from '../Spinner';
 import './bookList.css';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, onView }) => {
   return (
     <ul className="book-list">
       {
         books.map((book) => {
           return (
             <li key={book.id}>
-              <BookListItem book={book}/>
+              <BookListItem
+                book={book}
+                onView={() => onView(book.id)} />
             </li>
           )
         })
@@ -34,14 +36,18 @@ class BookListContainer extends React.Component {
   }
 
   render() {
-    const {books, loading, visibleBooks} = this.props;
+    const {books, loading, visibleBooks, onView} = this.props;
     if (loading) {
       return <Spinner/>
     }
     if (visibleBooks) {
-      return < BookList books={visibleBooks} />;
+      return <BookList
+        onView={onView}
+        books={visibleBooks} />;
     } else {
-      return < BookList books={books} />;
+      return <BookList
+        onView={onView}
+        books={books} />;
     }
   }
 }

@@ -6,6 +6,7 @@
     width: 320px;
     height: 323px;
     margin-right: 25px;
+    border-radius: .25rem;
 }
 
 .book-list-item .book-cover {
