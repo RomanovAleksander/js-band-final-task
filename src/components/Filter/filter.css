@@ -7,15 +7,33 @@
 }
 
 .filter-wrapper input {
-    font-size: 1.8rem;
-    height: 42px;
-    max-width: 428px;
+    height: 35px;
+    max-width: 196px;
+    /*background-color: #282828;*/
+    background-color: #182533;
+    color: rgba(255,255,255, 0.9);
+    border: none;
+}
+
+.filter-wrapper input:focus {
+    /*background-color: #282828;*/
+    background-color: #182533;
+    color: rgba(255,255,255, 0.9);
+}
+
+.filter-wrapper input::placeholder {
+    /*background-color: #282828;*/
+    background-color: #182533;
+    color: rgba(255,255,255, 0.9);
 }
 
 .filter-wrapper select {
-    font-size: 1.8rem;
-    height: 42px;
+    height: 35px;
     max-width: 428px;
-    margin-left: 45px;
+    margin-left: 20px;
     border-radius: .25rem;
+    /*background-color: #282828;*/
+    background-color: #182533;
+    border: none;
+    color: rgba(255,255,255, 0.9);
 }

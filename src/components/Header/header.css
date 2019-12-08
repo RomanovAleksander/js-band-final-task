@@ -1,50 +1,57 @@
 .shop-header {
-    border: 1px solid black;
-    margin-bottom: 1rem;
-    display: flex;
     justify-content: space-between;
     border-radius: .25rem;
+    /*background-color: #282828;*/
+    background-color: #182533;
+    color: rgba(255,255,255, 0.9);
+    margin: 0 0 1rem 0;
 }
 
 .shop-header .logo {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    padding: 1.5rem 0.7rem;
+    padding: 1.2rem 0.7rem;
+    color: rgba(255,255,255, 0.9);
 }
 
 .shop-header .shop-menu {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 35%;
+    width: 18rem;
 }
 
 .shop-header .shop-menu .menu-item {
-    margin: 0 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 1rem;
 }
 
 .shop-header .shop-menu a {
-    font-size: 50px;
+    font-size: 30px;
+    color: rgba(255,255,255, 0.9);
 }
 
 .shop-header .shop-menu .btn {
-    height: 44px;
+    height: 37px;
     width: 115px;
-    font-size: 1.2rem;
 }
 
-.pseudo-avatar {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    border: 1px solid #9d9d9d;
-    border-radius: 50%;
-    background: #fff;
+.shop-header .shop-menu .btn-primary {
+    background-color: #2a5582;
+    border-color: #2a5582;
+}
+
+.shop-header .shop-menu .btn-primary:hover {
+    background-color: #3899ff;
+    border-color: #3899ff;
+}
+
+.shop-header .shop-menu .rounded-circle {
+   width: 45px;
+    margin-right: 1rem;
 }
 
 .menu-item .userName {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }

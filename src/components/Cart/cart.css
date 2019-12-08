@@ -1,6 +1,7 @@
 .cart-container {
     position: relative;
     padding-top: 55px;
+    color: rgba(255,255,255, 0.9);
 }
 
 .cart-container .btn {
@@ -23,7 +24,7 @@
 }
 
 .cart-container table tr {
-    border: 1px solid black;
+    border: 1px solid #6c757d;
 }
 
 .cart-container table td:nth-last-child(1) {

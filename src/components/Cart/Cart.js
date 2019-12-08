@@ -16,7 +16,7 @@ const Cart = ({ items, total, onPurchase }) => {
 
   return (
     <div className="cart-container">
-      <button className="btn btn-info"
+      <button className="btn btn-secondary"
               onClick={onPurchase}>Purchase</button>
       <div className="table-wrapper">
         <table>

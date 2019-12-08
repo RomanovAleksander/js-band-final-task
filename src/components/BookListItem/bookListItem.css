@@ -1,5 +1,4 @@
 .book-list-item {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     padding: 14px;
@@ -7,12 +6,16 @@
     height: 323px;
     margin-right: 25px;
     border-radius: .25rem;
+    /*background-color: #282828;*/
+    background-color: #182533;
+    color: rgba(255,255,255, 0.9);
 }
 
 .book-list-item .book-cover {
     width: 100%;
     height: 169px;
-    background: aqua;
+    background-color: rgba(255,255,255, 0.9);
+    border-radius: .25rem;
 }
 
 .book-list-item .book-cover img {
@@ -52,4 +55,14 @@
     font-size: 1rem;
     font-weight: bold;
     width: 113px;
+}
+
+.book-list-item .book-footer .btn-primary {
+    background-color: #2a5582;
+    border-color: #2a5582;
+}
+
+.book-list-item .book-footer .btn-primary:hover {
+    background-color: #3899ff;
+    border-color: #3899ff;
 }
