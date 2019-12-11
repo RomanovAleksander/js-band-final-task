@@ -6,9 +6,7 @@ export const BookListItem = ({book, onView}) => {
   const { title, author, price, cover } = book;
   return (
     <div className="book-list-item">
-      <div className="book-cover">
-        <img src={cover} alt="cover" />
-      </div>
+      <img src={cover} alt="cover" className="cart-img-top"/>
       <div className="book-details">
         <div className="book-title">{title}</div>
         <div className="book-author">{author}</div>
@@ -17,7 +15,7 @@ export const BookListItem = ({book, onView}) => {
         <div className="book-price">{price}</div>
         <button
           onClick={onView}
-          className="btn btn-primary add-to-cart"
+          className="btn btn-primary"
         >
           View
         </button>

@@ -1,5 +1,5 @@
 .filter-wrapper {
-    margin: 2rem 0;
+    margin: 1rem 0;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -30,7 +30,7 @@
 .filter-wrapper select {
     height: 35px;
     max-width: 428px;
-    margin-left: 20px;
+    margin-left: 1rem;
     border-radius: .25rem;
     /*background-color: #282828;*/
     background-color: #182533;

@@ -11,6 +11,19 @@ const booksLoaded = (newBooks) => {
   }
 };
 
+const bookRequested = () => {
+  return {
+    type: 'FETCH_BOOK_REQUEST'
+  }
+};
+
+const bookLoaded = (newBook) => {
+  return {
+    type: 'FETCH_BOOK_SUCCESS',
+    payload: newBook
+  }
+};
+
 const searchBook = (books, searchText) => ({
   type: 'SEARCH_BOOK',
   payload: {
@@ -38,6 +51,8 @@ export {
   booksLoaded,
   booksRequested,
   searchBook,
+  bookLoaded,
+  bookRequested,
   filterBook,
   bookShowDetails
 }

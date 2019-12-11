@@ -19,7 +19,8 @@ const initialState = {
     }
   ],
   orderTotal: 300,
-  bookId: null
+  bookId: null,
+  book: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -37,17 +38,23 @@ export const reducer = (state = initialState, action) => {
         books: payload,
         loading: false
       };
+    case 'FETCH_BOOK_REQUEST':
+      return {
+        ...state,
+        book: [],
+        loading: true
+      };
+    case 'FETCH_BOOK_SUCCESS':
+      return {
+        ...state,
+        book: payload,
+        loading: false
+      };
     case 'SEARCH_BOOK':
       return {
         ...state,
         searchText: payload.searchText,
         visibleBooks: payload.books.filter(book => book.title.toLowerCase().includes(payload.searchText.toLowerCase()))
-      };
-
-    case 'BOOK_SHOW_DETAILS':
-      return {
-        ...state,
-        bookId: payload.bookId
       };
 
     default:

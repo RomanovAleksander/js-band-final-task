@@ -29,6 +29,7 @@ class BookListContainer extends React.Component {
   componentDidMount() {
     const {booksLoaded, booksRequested} = this.props;
     booksRequested();
+    // StoreService.req();
     StoreService.getBooks()
       .then((data) => {
         booksLoaded(data);

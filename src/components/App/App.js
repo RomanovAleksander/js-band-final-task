@@ -8,7 +8,7 @@ import './app.css';
 
 export const App = () => {
   return (
-    <main className="container">
+    <div className="container">
       <Header userName={'Alex'} />
         <Switch>
           <Route path="/books" component={HomePage} exact />
@@ -16,9 +16,12 @@ export const App = () => {
           <Route path="/books/:id"
                  render={({ match }) => {
                    const { id } = match.params;
+                   if (id > 77) {
+                     return <div>Not Found</div>
+                   }
                    return <BookDetails bookId={id}/>
                  }} />
         </Switch>
-    </main>
+    </div>
   )
 };
