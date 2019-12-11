@@ -10,6 +10,16 @@
     top: 0;
 }
 
+.cart-container.btn-primary {
+    background-color: #2a5582;
+    border-color: #2a5582;
+}
+
+.cart-container .btn-primary:hover {
+    background-color: #3899ff;
+    border-color: #3899ff;
+}
+
 .cart-container .table-wrapper {
     width: 100%;
 }
@@ -18,7 +28,7 @@
     width: 100%;
 }
 
-.cart-container table td {
+.cart-container table td, th {
     padding: 10px;
     text-align: left;
 }
@@ -27,7 +37,7 @@
     border: 1px solid #6c757d;
 }
 
-.cart-container table td:nth-last-child(1) {
+.cart-container table td:nth-last-child(1), th:nth-last-child(1) {
     padding: 10px;
     text-align: right;
 }

@@ -3,6 +3,12 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     list-style: none;
-    margin: 0;
+    margin: 0 -7px 0 -7px;
     padding: 0;
+}
+
+@media (max-width: 1200px) {
+    .book-list {
+        justify-content: center;
+    }
 }

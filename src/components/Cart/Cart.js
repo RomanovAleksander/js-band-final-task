@@ -20,6 +20,13 @@ const Cart = ({ items, total, onPurchase }) => {
               onClick={onPurchase}>Purchase</button>
       <div className="table-wrapper">
         <table>
+          <thead>
+          <tr>
+            <th>Book title:</th>
+            <th>Count:</th>
+            <th>Total price:</th>
+          </tr>
+          </thead>
           <tbody>
           { items.map(renderRow) }
           </tbody>
