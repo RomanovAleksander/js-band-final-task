@@ -12,7 +12,7 @@ export const BookListItem = ({book, onView}) => {
         <div className="book-author">{author}</div>
       </div>
       <div className="book-footer">
-        <div className="book-price">{price}</div>
+        <div className="book-price">{price} $</div>
         <button
           onClick={onView}
           className="btn btn-primary"

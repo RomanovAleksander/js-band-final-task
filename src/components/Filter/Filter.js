@@ -1,25 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchBook } from "../../actions";
+import { searchBooks, filterBooks } from "../../actions";
 import './filter.css';
 
 class Filter extends React.Component {
   onSearchChange = ({ target }) => {
-    const { searchBook, books } = this.props;
+    const { searchBooks } = this.props;
     const searchText = target.value;
 
-    searchBook(books, searchText);
+    searchBooks(searchText);
   };
 
-  // handleFilterChange = ({ target }) => {
-  //   const { filterBook, books } = this.props;
-  //   let price = target.value;
-  //
-  //   filterBook(books, price);
-  // };
+  handleFilterChange = ({ target }) => {
+    const { filterBooks } = this.props;
+    const filterPrice = target.value;
+
+    filterBooks(filterPrice);
+  };
 
   render() {
-    const { searchText } = this.props;
+    const { searchText, filterPrice } = this.props;
 
     return (
       <div className="filter-wrapper">
@@ -33,10 +33,10 @@ class Filter extends React.Component {
         <select
           className="select-status select"
           key="status"
-          // onChange={this.handleFilterChange}
-          // value={filterPrice}
+          onChange={this.handleFilterChange}
+          value={filterPrice}
         >
-          <option value="Price">Price</option>
+          <option value="all">Price</option>
           <option value="0-15">0-15</option>
           <option value="15-30">15-30</option>
           <option value=">30">&gt;30</option>
@@ -47,13 +47,13 @@ class Filter extends React.Component {
 }
 
 const mapDispatchToProps = {
-  searchBook
+  searchBooks,
+  filterBooks
 };
 
 const mapStateToProps = state => ({
-  books: state.books,
-  searchText: state.searchText,
-  // filterPrice: state.filterPrice,
+  searchText: state.bookList.searchText,
+  filterPrice: state.bookList.filterPrice,
 });
 
 export default connect(

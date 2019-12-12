@@ -27,37 +27,66 @@ const BookList = ({ books, onView }) => {
 
 class BookListContainer extends React.Component {
   componentDidMount() {
-    const {booksLoaded, booksRequested} = this.props;
-    booksRequested();
-    // StoreService.req();
-    StoreService.getBooks()
+    const { booksLoaded, booksRequested } = this.props;
+
+    StoreService.post('/signin', { "username": "testUser" })
       .then((data) => {
-        booksLoaded(data);
+        console.log(data);
       });
+
+    booksRequested();
+    StoreService.get('/books', 'hxqw5gnlxowd20zzb11h')
+      .then((data) => booksLoaded(data));
+  }
+
+  search(items, searchText) {
+    if (searchText === 0) {
+      return items;
+    }
+    return items.filter(item => {
+      return item.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+    });
+  }
+
+  filterByPrice(items, price) {
+    switch (price) {
+      case 'all':
+        return items;
+      case '0-15':
+        return items.filter((item) => item.price >= 0 && item.price < 15);
+      case '15-30':
+        return items.filter((item) => item.price >= 15 && item.price <= 30);
+      case '>30':
+        return items.filter((item) => item.price > 30);
+      default:
+        return items;
+    }
   }
 
   render() {
-    const {books, loading, visibleBooks, onView} = this.props;
+    const {books, loading, searchText, filterPrice, onView} = this.props;
+    const visibleBooks = this.filterByPrice(
+      this.search(books, searchText),
+      filterPrice
+    );
+
     if (loading) {
       return <Spinner/>
     }
-    if (visibleBooks) {
-      return <BookList
+
+    return <BookList
         onView={onView}
-        books={visibleBooks} />;
-    } else {
-      return <BookList
-        onView={onView}
-        books={books} />;
-    }
+        books={visibleBooks}/>;
+
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books,
-    visibleBooks: state.visibleBooks,
-    loading: state.loading
+    books: state.bookList.books,
+    searchText: state.bookList.searchText,
+    filterPrice: state.bookList.filterPrice,
+    loading: state.bookList.loading
   }
 };
 

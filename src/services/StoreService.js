@@ -1,65 +1,37 @@
 class StoreService {
+  _url = 'https://js-band-api.glitch.me';
 
-  data = [
-    { id: 0,
-      title: 'Success',
-      author: 'Romanov',
-      price: '50$',
-      cover: ''
-    },
-    { id: 1,
-      title: 'The Rock',
-      author: 'Rock',
-      price: '70$',
-      cover: ''
+  async fetchData(url, option) {
+    try {
+      const res = await fetch(`${this._url}${url}`, option);
+      if (!res.ok) {
+        throw new Error('Invalid request');
+      }
+      return await res.json();
+    } catch (err) {
+      console.log('Error');
     }
-  ];
+  }
 
-  // getBooks() {
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve(this.data);
-  //       reject(new Error('Error'));
-  //     }, 800)
-  //   })
-  // }
-
-  getBooks = async () => {
-    const res = await fetch('https://js-band-api.glitch.me/books', {
-      method: 'GET',
+  async get(url, token) {
+    return this.fetchData(url, {
+      mode: 'cors',
       headers: {
-        "Authorization": "Bearer ua3oiktgwrnrai4a0jtk"
+        Authorization: `Bearer ${token}`
       }
     });
+  }
 
-    const data = await res.json();
-    return data;
-  };
-
-  getBook = async (bookId) => {
-    const res = await fetch(`https://js-band-api.glitch.me/books/${bookId}`, {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer ua3oiktgwrnrai4a0jtk"
-      }
-    });
-
-    const data = await res.json();
-    return data;
-  };
-
-  req = async () => {
-    const res = await fetch('https://js-band-api.glitch.me/signin', {
+  post(url, body) {
+    return this.fetchData(url, {
       method: 'POST',
+      mode: 'cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ "username": "RandomUserX" })
+      body: JSON.stringify(body)
     });
-
-    const data = await res.json();
-    console.log(data)
-  };
+  }
 }
 
 export default new StoreService();

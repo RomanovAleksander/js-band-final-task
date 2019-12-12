@@ -1,63 +1,41 @@
-const initialState = {
-  books: [],
-  loading: true,
-  searchText: '',
-  visibleBooks: null,
-  filterPrice: 'Price',
-  cartItems: [
-    {
-      id: 1,
-      title: 'Book 1',
-      count: 1,
-      total: 100
-    },
-    {
-      id: 2,
-      title: 'Book 2',
-      count: 2,
-      total: 200
-    }
-  ],
-  orderTotal: 300,
-  bookId: null,
-  book: []
-};
+import { combineReducers } from 'redux';
+import { bookDetails } from './bookDetails';
+import { bookList } from './bookList';
 
-export const reducer = (state = initialState, action) => {
-  const {type, payload} = action;
-  switch (type) {
-    case 'FETCH_BOOKS_REQUEST':
-      return {
-        ...state,
-        books: [],
-        loading: true
-      };
-    case 'FETCH_BOOKS_SUCCESS':
-      return {
-        ...state,
-        books: payload,
-        loading: false
-      };
-    case 'FETCH_BOOK_REQUEST':
-      return {
-        ...state,
-        book: [],
-        loading: true
-      };
-    case 'FETCH_BOOK_SUCCESS':
-      return {
-        ...state,
-        book: payload,
-        loading: false
-      };
-    case 'SEARCH_BOOK':
-      return {
-        ...state,
-        searchText: payload.searchText,
-        visibleBooks: payload.books.filter(book => book.title.toLowerCase().includes(payload.searchText.toLowerCase()))
-      };
+// const shoppingCart = (state = {
+//   cartItems: [],
+//   orderTotal: 0,
+// }, action) => {
+//   const {type, payload} = action;
+//   switch (type) {
+//     case 'BOOK_ADDED_TO_CART':
+//       console.log(state.bookList);
+//       const book = state.books.find((book) => book.id === payload.bookId);
+//       const itemIndex = state.cartItems.findIndex((item) => item.id === payload.bookId);
+//       const item = state.cartItems[itemIndex];
+//       const newItem = updateCartItem(book, item);
+//
+//       // const calcOrderPrice = state.cartItems.map((item) => {
+//       //   let order = 0;
+//       //   order += item.totalPrice;
+//       //   return order;
+//       // });
+//
+//       return {
+//         ...state,
+//         cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
+//         // orderTotal: calcOrderPrice
+//       };
+//
+//     default:
+//       return state;
+//   }
+// };
 
-    default:
-      return state;
-  }
-};
+
+
+export const reducer = combineReducers({
+  bookList,
+  // shoppingCart,
+  bookDetails
+});
