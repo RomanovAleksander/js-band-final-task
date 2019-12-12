@@ -90,7 +90,7 @@ class BookDetailsContainer extends React.Component {
     //   onAddedToCart={() => bookAddedToCart(book.id)}
     // />);
     if (book) {
-      const { amountBooksIn, title, author, level, tags, cover, description, price } = book;
+      const { title, author, level, tags, cover, description, price } = book;
 
       return (
         <main className="container book-page">
@@ -137,7 +137,6 @@ const mapStateToProps = (state) => {
     count: state.bookDetails.count,
     maxCount: state.bookDetails.maxCount,
     minCount: state.bookDetails.minCount,
-    amountBooksIn: state.bookDetails.amountBooksIn,
     loading: state.bookDetails.loading
   }
 };

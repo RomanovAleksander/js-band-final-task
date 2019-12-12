@@ -48,13 +48,6 @@ const bookAddedToCart = (bookId, count) => {
   }
 };
 
-const tokenLoaded = (token) => ({
-  type: 'LOAD_TOKEN',
-  payload: {
-    token
-  }
-});
-
 export {
   booksLoaded,
   booksRequested,
