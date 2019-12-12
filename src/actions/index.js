@@ -24,35 +24,43 @@ const bookLoaded = (newBook) => {
   }
 };
 
-const searchBook = (books, searchText) => ({
-  type: 'SEARCH_BOOK',
+const searchBooks = (searchText) => ({
+  type: 'SEARCH_BOOKS',
   payload: {
-    searchText,
-    books
+    searchText
   }
 });
 
-const filterBook = (books, filterPrice) => ({
+const filterBooks = (filterPrice) => ({
   type: 'FILTER_BOOKS',
   payload: {
-    filterPrice,
-    books
+    filterPrice
   }
 });
 
-const bookShowDetails = (bookId) => {
+const bookAddedToCart = (bookId, count) => {
   return {
-    type: 'BOOK_SHOW_DETAILS',
-    payload: bookId
+    type: 'BOOK_ADDED_TO_CART',
+    payload: {
+      bookId,
+      count
+    }
   }
 };
+
+const tokenLoaded = (token) => ({
+  type: 'LOAD_TOKEN',
+  payload: {
+    token
+  }
+});
 
 export {
   booksLoaded,
   booksRequested,
-  searchBook,
+  searchBooks,
   bookLoaded,
   bookRequested,
-  filterBook,
-  bookShowDetails
+  filterBooks,
+  bookAddedToCart
 }

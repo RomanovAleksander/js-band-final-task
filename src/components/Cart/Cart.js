@@ -4,20 +4,21 @@ import './cart.css'
 
 const Cart = ({ items, total, onPurchase }) => {
   const renderRow = (item) => {
-    const { id, title, count, total } = item;
+    const { id, title, count, totalPrice } = item;
     return (
       <tr key={id}>
         <td>{title}</td>
         <td>{count}</td>
-        <td>{total}</td>
+        <td>{totalPrice}</td>
       </tr>
     )
   };
 
   return (
-    <div className="cart-container">
+   <div className="cart-container">
       <button className="btn btn-secondary"
-              onClick={onPurchase}>Purchase</button>
+              onClick={onPurchase}>Purchase
+      </button>
       <div className="table-wrapper">
         <table>
           <thead>
@@ -28,18 +29,18 @@ const Cart = ({ items, total, onPurchase }) => {
           </tr>
           </thead>
           <tbody>
-          { items.map(renderRow) }
+          {items.map(renderRow)}
           </tbody>
         </table>
       </div>
       <div className="total">Total price, $ {total}</div>
     </div>
-  )
+    )
 };
 
-const mapStateToProps = state => ({
-  items: state.cartItems,
-  total: state.orderTotal,
+const mapStateToProps = (state) => ({
+  items: state.bookDetails.cartItems,
+  total: state.bookDetails.orderTotal,
 });
 
 const mapDispatchToProps = () => {
