@@ -63,7 +63,7 @@ class BookDetailsContainer extends React.Component {
     if (book) {
       const { title, author, level, tags, cover, description, price } = book;
       const maxValue = maxCount - cartBookCount;
-      let isValid =  (booksCount <= maxValue || isNaN(booksCount)) ? 'is-valid' : 'is-invalid';
+      const isValid =  (booksCount <= maxValue || isNaN(booksCount)) ? 'is-valid' : 'is-invalid';
       const calcTotal = (price * booksCount).toFixed(2);
       const isTotalNumber = isNaN(booksCount) ? 0 : calcTotal;
 
@@ -84,7 +84,7 @@ class BookDetailsContainer extends React.Component {
           <form className="price-wrapper" onSubmit={this.onSubmit}>
             <div className="price-counter">
               <div className="price-item"><b>Price, $</b><b>{price}</b></div>
-              <label className="counter-wrapper">
+              <label className="counter-wrapper" htmlFor="count-input">
                 <b>Count</b>
                 <div className="input-wrapper">
                   <input type="number"
@@ -93,8 +93,9 @@ class BookDetailsContainer extends React.Component {
                          max={maxValue}
                          min={minCount}
                          value={booksCount}
+                         id="count-input"
                          required />
-                  <div className="invalid-feedback">We don't have so much!</div>
+                  <div className="invalid-feedback">We don`&apos;`t have so much!</div>
                 </div>
               </label>
               <div className="price-item"><b>Total price</b><b>{isTotalNumber}</b></div>
