@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import { connect } from "react-redux";
 
-export const Header = ({userName}) => {
+const Header = ({userName, isCartEmpty}) => {
+  const isEmpty = isCartEmpty ? '' : 'notEmpty';
   return (
     <header className="shop-header row">
       <Link to="/books">
@@ -10,7 +12,7 @@ export const Header = ({userName}) => {
       </Link>
       <div className="shop-menu">
         <Link to="/cart">
-          <i className="cart fa fa-shopping-cart"/>
+          <i className={`cart fa fa-shopping-cart ${isEmpty}`}/>
         </Link>
         <div className="menu-item">
           <button className="btn btn-primary">Sign-Out</button>
@@ -23,3 +25,13 @@ export const Header = ({userName}) => {
     </header>
   )
 };
+
+const mapStateToProps = (state) => {
+  return {
+    isCartEmpty: state.bookDetails.isCartEmpty
+  }
+};
+
+export default connect(
+  mapStateToProps
+)(Header);
