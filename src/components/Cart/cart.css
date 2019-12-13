@@ -48,3 +48,12 @@
     font-weight: bold;
     margin-top: 10px;
 }
+
+.container .cartEmpty {
+    font-size: 3rem;
+}
+
+.container .cartEmptyText {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}

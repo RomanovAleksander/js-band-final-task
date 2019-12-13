@@ -1,11 +1,11 @@
 const initialState = {
   book: null,
   bookId: null,
-  count: 1,
   maxCount: 0,
   minCount: 0,
   cartItems: [],
   orderTotal: 0,
+  isCartEmpty: true,
   loading: true
 };
 
@@ -25,16 +25,18 @@ const updateCartItems = (cartItems, item, idx) => {
 
 const updateCartItem = (book, item, count) => {
   if (item) {
+    const total = item.totalPrice + book.price * count;
     return {
       ...item,
       count: item.count + count,
-      totalPrice: item.totalPrice + book.price * count
+      totalPrice: parseFloat((total).toFixed(2))
     }
   } else {
     return {
+      ...item,
       id: book.id,
       count: count,
-      totalPrice: book.price * count,
+      totalPrice: parseFloat((book.price * count).toFixed(2)),
       title: book.title
     };
   }
@@ -61,18 +63,13 @@ export const bookDetails = (state = initialState, action) => {
       const itemIndex = state.cartItems.findIndex((item) => item.id === payload.bookId);
       const item = state.cartItems[itemIndex];
       const newItem = updateCartItem(book, item, payload.count);
-
-      // const calcOrderPrice = state.cartItems.map((item) => {
-      //   let order = 0;
-      //   order += item.totalPrice;
-      //   return order;
-      // });
+      const newTotal = parseFloat((state.orderTotal + book.price * payload.count).toFixed(2));
 
       return {
         ...state,
+        isCartEmpty: false,
         cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
-        maxCount: state.maxCount - payload.count
-        // orderTotal: calcOrderPrice
+        orderTotal: newTotal
       };
 
     default:

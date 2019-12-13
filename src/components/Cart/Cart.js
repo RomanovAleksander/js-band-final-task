@@ -2,7 +2,7 @@ import React  from 'react';
 import { connect } from 'react-redux';
 import './cart.css'
 
-const Cart = ({ items, total, onPurchase }) => {
+const Cart = ({ items, total, onPurchase, isCartEmpty }) => {
   const renderRow = (item) => {
     const { id, title, count, totalPrice } = item;
     return (
@@ -13,6 +13,16 @@ const Cart = ({ items, total, onPurchase }) => {
       </tr>
     )
   };
+
+  if (isCartEmpty) {
+    return (
+      <div className="container text-center">
+        <i className={`cart fa fa-shopping-cart cartEmpty`} />
+        <p className="cartEmptyText">Cart empty...</p>
+      </div>
+    )
+  }
+
 
   return (
    <div className="cart-container">
@@ -41,6 +51,7 @@ const Cart = ({ items, total, onPurchase }) => {
 const mapStateToProps = (state) => ({
   items: state.bookDetails.cartItems,
   total: state.bookDetails.orderTotal,
+  isCartEmpty: state.bookDetails.isCartEmpty,
 });
 
 const mapDispatchToProps = () => {
