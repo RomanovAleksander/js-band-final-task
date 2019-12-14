@@ -1,3 +1,11 @@
+import {
+  FETCH_BOOK_REQUEST,
+  FETCH_BOOK_SUCCESS,
+  BOOK_ADDED_TO_CART,
+  PURCHASE_SUCCESS,
+  SIGN_OUT
+} from '../actions/types'
+
 const initialState = {
   book: null,
   bookId: null,
@@ -47,25 +55,25 @@ const updateCartItem = (book, item, count) => {
 export const bookDetails = (state = initialState, action) => {
   const {type, payload} = action;
   switch (type) {
-    case 'FETCH_BOOK_REQUEST':
+    case FETCH_BOOK_REQUEST:
       return {
         ...state,
         book: [],
         loading: true
       };
-    case 'FETCH_BOOK_SUCCESS':
+    case FETCH_BOOK_SUCCESS:
       return {
         ...state,
         book: payload,
         maxCount: payload.count,
         loading: false
       };
-    case 'PURCHASE_SUCCESS':
+    case PURCHASE_SUCCESS:
       return {
         ...initialState,
         purchaseMassage: payload
       };
-    case 'BOOK_ADDED_TO_CART':
+    case BOOK_ADDED_TO_CART:
       const { book, cartItems, orderTotal, booksInCart } = state;
       const itemIndex = cartItems.findIndex((item) => item.id === payload.bookId);
       const item = cartItems[itemIndex];
@@ -79,6 +87,10 @@ export const bookDetails = (state = initialState, action) => {
         cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
         orderTotal: newTotal,
         booksInCart: newBooksInCart
+      };
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
 
     default:

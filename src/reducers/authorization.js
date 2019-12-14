@@ -1,19 +1,40 @@
+import {
+  SIGN_IN,
+  SIGN_OUT
+} from '../actions/types';
+
 const initialState = {
-  username: 'Alex',
-  avatar: 'https://api.adorable.io/avatars/100/orange.png',
-  token: null,
+  user: {
+    username: null,
+    avatar: null,
+    token: null
+  },
   isAuthorized: false
 };
 
-export const userData = (state = initialState, action) => {
+export const userData = (state , action) => {
+  if (state === undefined) {
+    if (localStorage.userData) {
+      return {
+        user: JSON.parse(localStorage.getItem('userData')),
+        isAuthorized: true
+      }
+    } else {
+      return initialState
+    }
+  }
+
   const {type, payload} = action;
   switch (type) {
-    case 'FETCH_USER_SUCCESS':
+    case SIGN_IN:
       return {
-        ...payload,
+        user: {
+          ...payload
+        },
         isAuthorized: true
       };
-    case 'SIGN_OUT':
+    case SIGN_OUT:
+      localStorage.clear();
       return {
         ...initialState
       };

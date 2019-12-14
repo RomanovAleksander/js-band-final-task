@@ -91,7 +91,7 @@ const mapStateToProps = (state) => {
     books: state.bookList.books,
     searchText: state.bookList.searchText,
     filterPrice: state.bookList.filterPrice,
-    token: state.userData.token,
+    token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized,
     loading: state.bookList.loading
   }

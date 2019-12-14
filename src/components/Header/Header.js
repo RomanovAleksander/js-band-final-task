@@ -26,7 +26,7 @@ const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSign
       </div>
       <div className="menu-item row">
         <img src={avatar} alt="avatar" className="rounded-circle"/>
-        <div className="userName">{username}</div>
+        <div className="user-name">{username}</div>
       </div>
     </div>
   );
@@ -44,9 +44,9 @@ const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSign
 const mapStateToProps = (state) => {
   return {
     booksInCart: state.bookDetails.booksInCart,
-    username: state.userData.username,
-    avatar: state.userData.avatar,
-    token: state.userData.token,
+    username: state.userData.user.username,
+    avatar: state.userData.user.avatar,
+    token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized
   }
 };
