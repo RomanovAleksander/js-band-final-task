@@ -1,22 +1,26 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
 import { BooksPage, CartPage, SignInPage, BookPage, NotFoundPage } from "../../pages";
 import PrivateRoute from '../Routing/PrivateRoute';
 
 import './app.css';
 
-export const App = () => {
+const App = ({ isAuthorized }) => {
   return (
     <div className="container">
       <Switch>
-        <Redirect from="/" to="/signin" exact/>
+        <Redirect from="/"
+                  to={isAuthorized ? "/books" : "/signin"}
+                  exact
+        />
         <Route path="/signin" component={SignInPage}/>
         <PrivateRoute path="/books" component={BooksPage} exact/>
         <PrivateRoute path="/cart" component={CartPage}/>
         <PrivateRoute path="/books/:id"
-                      component={({match}) => {
+                      component={({match, booksQuantity}) => {
                         const {id} = match.params;
-                        if (id > 77) {
+                        if (id > (booksQuantity || 77)) {
                           return <NotFoundPage />
                         }
                         return <BookPage bookId={id} />
@@ -27,3 +31,12 @@ export const App = () => {
     </div>
   )
 };
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthorized: state.userData.isAuthorized,
+    booksQuantity: state.bookList.booksQuantity
+  }
+};
+
+export default connect(mapStateToProps)(App);

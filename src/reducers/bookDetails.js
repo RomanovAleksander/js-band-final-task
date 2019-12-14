@@ -15,8 +15,8 @@ const initialState = {
   orderTotal: 0,
   booksInCart: 0,
   isCartEmpty: true,
-  purchaseMassage: null,
-  loading: true
+  loading: true,
+  loadingC: false,
 };
 
 const updateCartItems = (cartItems, item, idx) => {
@@ -68,10 +68,15 @@ export const bookDetails = (state = initialState, action) => {
         maxCount: payload.count,
         loading: false
       };
+    case 'PURCHASE_REQUEST':
+      return {
+        ...initialState,
+        loadingC: true
+      };
     case PURCHASE_SUCCESS:
       return {
         ...initialState,
-        purchaseMassage: payload
+        loadingC: false
       };
     case BOOK_ADDED_TO_CART:
       const { book, cartItems, orderTotal, booksInCart } = state;
