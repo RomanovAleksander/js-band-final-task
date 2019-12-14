@@ -1,7 +1,7 @@
 const initialState = {
   username: 'Alex',
   avatar: 'https://api.adorable.io/avatars/100/orange.png',
-  token: 'iflhou39qa5qswkg4eakb',
+  token: 'kxu8712hp1ejteorxxt9xe',
   isAuthorized: true
 };
 

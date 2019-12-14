@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { BookList } from '../components/BookList';
 import { Filter } from '../components/Filter';
+import { ScrollArrow } from "../components/ScrollArrow";
 
 const HomePage = ({ history }) => {
   return (
@@ -10,6 +11,7 @@ const HomePage = ({ history }) => {
       <BookList onView={(bookId) => {
         history.push(`/books/${bookId}`);
       }}/>
+      <ScrollArrow />
     </>
   );
 };
