@@ -7,7 +7,7 @@ const initialState = {
   orderTotal: 0,
   booksInCart: 0,
   isCartEmpty: true,
-  purchaseMessage: null,
+  purchaseMassage: null,
   loading: true
 };
 
@@ -62,7 +62,8 @@ export const bookDetails = (state = initialState, action) => {
       };
     case 'PURCHASE_SUCCESS':
       return {
-        ...initialState
+        ...initialState,
+        purchaseMassage: payload
       };
     case 'BOOK_ADDED_TO_CART':
       const { book, cartItems, orderTotal, booksInCart } = state;

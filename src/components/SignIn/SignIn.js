@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import './signIn.css';
 import StoreService from "../../services/StoreService";
+import { userSignIn } from '../../actions';
 
-import { usernameLoaded } from '../../actions'
+import './signIn.css';
 
 class SignIn extends React.Component {
   constructor() {
@@ -24,17 +25,26 @@ class SignIn extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { username } = this.state;
+    const { history } = this.props;
 
     StoreService.post('/signin', { "username": username })
       .then((data) => {
-        this.props.usernameLoaded(data);
+        this.props.userSignIn(data);
         console.log(data)
+      })
+      .then(() => {
+        history.push(`/books`);
       });
   };
 
   render() {
-    const { username, minLength,  maxLength} = this.state;
+    const { username, minLength,  maxLength } = this.state;
+    const { isAuthorized } = this.props;
     const isValid =  (username.length >= minLength && username.length <= maxLength) ? 'is-valid' : 'is-invalid';
+
+    if (isAuthorized) {
+      return <div className="already-authorized">You are already authorized</div>
+    }
 
     return (
       <div className="container d-flex justify-content-center">
@@ -47,12 +57,12 @@ class SignIn extends React.Component {
               <input type="text"
                      className={`form-control ${isValid}`}
                      onChange={this.onChange}
-                     max={maxLength}
-                     min={minLength}
+                     maxLength={maxLength}
+                     minLength={minLength}
                      value={username}
                      placeholder="type Username"
                      id="sign-in-input"
-                     required/>
+                     required />
               <div className="invalid-feedback text-center">Field is not valid!</div>
             </div>
           </label>
@@ -66,11 +76,18 @@ class SignIn extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  usernameLoaded
+const mapStateToProps = (state) => {
+  return {
+    isAuthorized: state.userData.isAuthorized
+  }
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignIn);
+const mapDispatchToProps = {
+  userSignIn
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps, mapDispatchToProps
+  )(SignIn)
+);

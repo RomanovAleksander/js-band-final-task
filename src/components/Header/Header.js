@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './header.css';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import { userSignOut } from "../../actions";
 
-const Header = ({ username, avatar, isAuthorized, booksInCart}) => {
+import './header.css';
+
+const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSignOut}) => {
+  const signOut = () => {
+    userSignOut();
+    history.push(`/signin`);
+  };
+
   const authorized = (
     <div className="shop-menu">
       <Link to="/cart">
@@ -11,7 +18,11 @@ const Header = ({ username, avatar, isAuthorized, booksInCart}) => {
         <span className="cart-count">{booksInCart}</span>
       </Link>
       <div className="menu-item">
-        <button className="btn btn-primary">Sign-Out</button>
+        <button className="btn btn-primary"
+                onClick={signOut}
+        >
+          Sign-Out
+        </button>
       </div>
       <div className="menu-item row">
         <img src={avatar} alt="avatar" className="rounded-circle"/>
@@ -40,6 +51,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(
-  mapStateToProps
-)(Header);
+const mapDispatchToProps = {
+  userSignOut
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Header)
+);

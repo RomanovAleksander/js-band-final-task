@@ -46,7 +46,7 @@ export class ScrollArrow extends React.Component {
 
     return (
       <div className={`back-top ${isScrolled}`}
-           title="Go top"
+           title="Go to top"
            onClick={this.backToTop}>
         <i className="fa fa-arrow-circle-up" aria-hidden="true"> </i>
       </div>

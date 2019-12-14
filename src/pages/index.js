@@ -1,10 +1,14 @@
-import  HomePage  from "./HomePage";
+import  BooksPage  from "./BooksPage";
+import  { BookPage }  from "./BookPage";
 import { CartPage } from "./CartPage";
 import { SignInPage } from "./SignInPage";
+import { NotFoundPage } from "./NotFoundPage";
 
 export {
-  HomePage,
+  BooksPage,
+  BookPage,
   CartPage,
-  SignInPage
+  SignInPage,
+  NotFoundPage
 };
 
