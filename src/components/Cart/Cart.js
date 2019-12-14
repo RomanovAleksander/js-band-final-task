@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
   total: state.bookDetails.orderTotal,
   isCartEmpty: state.bookDetails.isCartEmpty,
   purchaseMessage: state.bookDetails.purchaseMessage,
-  token: state.userData.token,
+  token: state.userData.user.token,
 });
 
 const mapDispatchToProps = {

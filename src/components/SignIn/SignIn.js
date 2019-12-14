@@ -30,7 +30,8 @@ class SignIn extends React.Component {
     StoreService.post('/signin', { "username": username })
       .then((data) => {
         this.props.userSignIn(data);
-        console.log(data)
+        localStorage.setItem(`userData`, JSON.stringify(data));
+        console.log(data, localStorage)
       })
       .then(() => {
         history.push(`/books`);
