@@ -9,7 +9,7 @@ class StoreService {
       }
       return await res.json();
     } catch (err) {
-      console.log('Error');
+      return err
     }
   }
 
@@ -22,13 +22,19 @@ class StoreService {
     });
   }
 
-  post(url, body) {
+  post(url, body, token) {
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
     return this.fetchData(url, {
       method: 'POST',
       mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers,
       body: JSON.stringify(body)
     });
   }

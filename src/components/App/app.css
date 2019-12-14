@@ -4,3 +4,13 @@ body {
     color: rgba(255,255,255, 0.9);
     line-height: normal;
 }
+
+.btn-primary {
+    background-color: #2a5582;
+    border-color: #2a5582;
+}
+
+.btn-primary:hover {
+    background-color: #3899ff;
+    border-color: #3899ff;
+}

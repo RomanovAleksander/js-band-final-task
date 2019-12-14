@@ -27,22 +27,21 @@ const BookList = ({ books, onView }) => {
 
 class BookListContainer extends React.Component {
   componentDidMount() {
-    const { booksLoaded, booksRequested } = this.props;
-
-    StoreService.post('/signin', { "username": "testUser" })
-      .then((data) => {
-        console.log(data);
-      });
+    const { booksLoaded, booksRequested, token } = this.props;
 
     booksRequested();
-    StoreService.get('/books', '5686wvoxndcplla5xi8qte')
-      .then((data) => booksLoaded(data));
+    StoreService.get('/books', token)
+      .then((data) => booksLoaded(data))
+      .catch(() => {
+
+      })
   }
 
   search(items, searchText) {
     if (searchText === 0) {
       return items;
     }
+
     return items.filter(item => {
       return item.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
     });
@@ -64,20 +63,26 @@ class BookListContainer extends React.Component {
   }
 
   render() {
-    const {books, loading, searchText, filterPrice, onView} = this.props;
-    const visibleBooks = this.filterByPrice(
-      this.search(books, searchText),
-      filterPrice
-    );
+    const {books, loading, searchText, filterPrice, onView, isAuthorized} = this.props;
 
     if (loading) {
       return <Spinner/>
     }
 
-    return <BookList
+    if (!isAuthorized) {
+      return <div>Not Found</div>
+    }
+
+    if (books) {
+      const visibleBooks = this.filterByPrice(
+        this.search(books, searchText),
+        filterPrice
+      );
+
+      return <BookList
         onView={onView}
         books={visibleBooks}/>;
-
+    }
   }
 }
 
@@ -86,6 +91,8 @@ const mapStateToProps = (state) => {
     books: state.bookList.books,
     searchText: state.bookList.searchText,
     filterPrice: state.bookList.filterPrice,
+    token: state.userData.token,
+    isAuthorized: state.userData.isAuthorized,
     loading: state.bookList.loading
   }
 };

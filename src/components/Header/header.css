@@ -27,8 +27,26 @@
 }
 
 .shop-header .shop-menu a {
+    position: relative;
     font-size: 30px;
     color: rgba(255,255,255, 0.9);
+}
+
+.shop-header .shop-menu .cart:hover {
+    color: #2a5582;
+}
+
+.shop-header .shop-menu .cart-count {
+    position: absolute;
+    top: 1px;
+    left: 35%;
+    min-width: 1rem;
+    color: white;
+    font-size: 0.8rem;
+    padding: 1px;
+    text-align: center;
+    background: #2a5582;
+    border-radius: 50%;
 }
 
 .shop-header .shop-menu .btn {
@@ -54,8 +72,4 @@
 .menu-item .userName {
     font-size: 1.2rem;
     font-weight: bold;
-}
-
-.notEmpty {
-    color: #3899ff;
 }
