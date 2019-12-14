@@ -101,7 +101,7 @@ class BookDetails extends React.Component {
                          value={booksCount}
                          id="count-input"
                          required />
-                  <div className="invalid-feedback">We don&apos;t have so much!</div>
+                  <div className="invalid-feedback">We don&apos;t have so much =(</div>
                 </div>
               </label>
               <div className="price-item"><b>Total price</b><b>{isTotalNumber}</b></div>

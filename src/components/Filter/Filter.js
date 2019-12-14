@@ -25,7 +25,7 @@ class Filter extends React.Component {
       <div className="filter-wrapper">
         <input
           type="search"
-          className="form-control mr-sm-2"
+          className="form-control"
           placeholder="search by title"
           onChange={this.onSearchChange}
           value={searchText}
