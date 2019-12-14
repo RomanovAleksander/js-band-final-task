@@ -1,8 +1,20 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import './cart.css'
+import StoreService from "../../services/StoreService";
+import { purchaseBooks } from "../../actions";
 
-const Cart = ({ items, total, onPurchase, isCartEmpty }) => {
+const Cart = ({ items, total, purchaseBooks, isCartEmpty }) => {
+  const purchase = () => {
+    StoreService.post('/purchase', { "books": items }, '5686wvoxndcplla5xi8qte')
+      .then((data) => {
+        console.log(data);
+      })
+      .then(() => {
+        purchaseBooks()
+      })
+  };
+
   const renderRow = (item) => {
     const { id, title, count, totalPrice } = item;
     return (
@@ -14,36 +26,39 @@ const Cart = ({ items, total, onPurchase, isCartEmpty }) => {
     )
   };
 
-  if (isCartEmpty) {
-    return (
-      <div className="container text-center">
-        <i className={`cart fa fa-shopping-cart cartEmpty`} />
-        <p className="cartEmptyText">Cart empty...</p>
-      </div>
-    )
-  }
+  const empty = (
+    <div className="container text-center">
+      <i className={`cart fa fa-shopping-cart cartEmpty`} />
+      <p className="cartEmptyText">Cart empty...</p>
+    </div>
+  );
 
+  const fill = (
+    <div className="table-wrapper">
+      <table>
+        <thead>
+        <tr>
+          <th>Book title:</th>
+          <th>Count:</th>
+          <th>Total price:</th>
+        </tr>
+        </thead>
+        <tbody>
+        {items.map(renderRow)}
+        </tbody>
+      </table>
+      <div className="total">Total price, $ {total}</div>
+    </div>
+  );
 
   return (
    <div className="cart-container">
-      <button className="btn btn-secondary"
-              onClick={onPurchase}>Purchase
+      <button className="btn btn-primary"
+              onClick={purchase}
+              disabled={isCartEmpty}>
+        Purchase
       </button>
-      <div className="table-wrapper">
-        <table>
-          <thead>
-          <tr>
-            <th>Book title:</th>
-            <th>Count:</th>
-            <th>Total price:</th>
-          </tr>
-          </thead>
-          <tbody>
-          {items.map(renderRow)}
-          </tbody>
-        </table>
-      </div>
-      <div className="total">Total price, $ {total}</div>
+     {isCartEmpty ? empty : fill}
     </div>
     )
 };
@@ -54,12 +69,8 @@ const mapStateToProps = (state) => ({
   isCartEmpty: state.bookDetails.isCartEmpty,
 });
 
-const mapDispatchToProps = () => {
-  return {
-    onPurchase: () => {
-      console.log('onPurchase');
-    }
-  }
+const mapDispatchToProps = {
+  purchaseBooks
 };
 
 export default connect(

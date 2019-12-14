@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Header } from "../Header";
-import { HomePage, CartPage } from "../../pages";
+import { HomePage, CartPage, SignInPage } from "../../pages";
 import { BookDetails } from "../BookDetails";
 
 import './app.css';
@@ -9,8 +9,10 @@ import './app.css';
 export const App = () => {
   return (
     <div className="container">
-      <Header userName={'Alex'} />
+      <Header />
         <Switch>
+          <Redirect from="/" to="/signin" exact />
+          <Route path="/signin" component={SignInPage} />
           <Route path="/books" component={HomePage} exact />
           <Route path="/cart" component={CartPage} />
           <Route path="/books/:id"

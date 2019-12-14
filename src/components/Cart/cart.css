@@ -49,6 +49,16 @@
     margin-top: 10px;
 }
 
+.cart-container .btn-primary {
+    background-color: #2a5582;
+    border-color: #2a5582;
+}
+
+.cart-container .btn-primary:hover {
+    background-color: #3899ff;
+    border-color: #3899ff;
+}
+
 .container .cartEmpty {
     font-size: 3rem;
 }

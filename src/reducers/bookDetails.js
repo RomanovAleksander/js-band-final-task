@@ -5,7 +5,9 @@ const initialState = {
   minCount: 0,
   cartItems: [],
   orderTotal: 0,
+  booksInCart: 0,
   isCartEmpty: true,
+  purchaseMessage: null,
   loading: true
 };
 
@@ -58,18 +60,24 @@ export const bookDetails = (state = initialState, action) => {
         maxCount: payload.count,
         loading: false
       };
+    case 'PURCHASE_SUCCESS':
+      return {
+        ...initialState
+      };
     case 'BOOK_ADDED_TO_CART':
-      const { book } = state;
-      const itemIndex = state.cartItems.findIndex((item) => item.id === payload.bookId);
-      const item = state.cartItems[itemIndex];
+      const { book, cartItems, orderTotal, booksInCart } = state;
+      const itemIndex = cartItems.findIndex((item) => item.id === payload.bookId);
+      const item = cartItems[itemIndex];
       const newItem = updateCartItem(book, item, payload.count);
-      const newTotal = parseFloat((state.orderTotal + book.price * payload.count).toFixed(2));
+      const newTotal = parseFloat((orderTotal + book.price * payload.count).toFixed(2));
+      const newBooksInCart = booksInCart + payload.count;
 
       return {
         ...state,
         isCartEmpty: false,
         cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
-        orderTotal: newTotal
+        orderTotal: newTotal,
+        booksInCart: newBooksInCart
       };
 
     default:

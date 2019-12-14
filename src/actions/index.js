@@ -48,6 +48,25 @@ const bookAddedToCart = (bookId, count) => {
   }
 };
 
+const purchaseBooks = () => {
+  return {
+    type: 'PURCHASE_SUCCESS'
+  }
+};
+
+// const usernameRequested = () => {
+//   return {
+//     type: 'FETCH_USER_REQUEST'
+//   }
+// };
+
+const usernameLoaded = (user) => {
+  return {
+    type: 'FETCH_USER_SUCCESS',
+    payload: user
+  }
+};
+
 export {
   booksLoaded,
   booksRequested,
@@ -55,5 +74,7 @@ export {
   bookLoaded,
   bookRequested,
   filterBooks,
-  bookAddedToCart
+  bookAddedToCart,
+  purchaseBooks,
+  usernameLoaded
 }

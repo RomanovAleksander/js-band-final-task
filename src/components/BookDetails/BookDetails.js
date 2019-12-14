@@ -10,7 +10,7 @@ import {
 
 import './bookDetails.css';
 
-class BookDetailsContainer extends React.Component {
+class BookDetails extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -22,11 +22,12 @@ class BookDetailsContainer extends React.Component {
     const {
       bookLoaded,
       bookRequested,
-      bookId
+      bookId,
+      token
     } = this.props;
 
     bookRequested();
-    StoreService.get(`/books/${bookId}`, '5686wvoxndcplla5xi8qte')
+    StoreService.get(`/books/${bookId}`, token)
       .then((data) => {
         bookLoaded(data);
       });
@@ -50,7 +51,7 @@ class BookDetailsContainer extends React.Component {
   };
 
   render() {
-    const {book, loading, maxCount, minCount, cartItems} = this.props;
+    const {book, loading, maxCount, minCount, cartItems, isAuthorized} = this.props;
     const { booksCount } = this.state;
 
     const cartBookIndex = cartItems.findIndex((item) => item.id === book.id);
@@ -60,6 +61,11 @@ class BookDetailsContainer extends React.Component {
     if (loading) {
       return <Spinner />
     }
+
+    if (!isAuthorized) {
+      return <div>Not Found</div>
+    }
+
     if (book) {
       const { title, author, level, tags, cover, description, price } = book;
       const maxValue = maxCount - cartBookCount;
@@ -95,7 +101,7 @@ class BookDetailsContainer extends React.Component {
                          value={booksCount}
                          id="count-input"
                          required />
-                  <div className="invalid-feedback">We don`&apos;`t have so much!</div>
+                  <div className="invalid-feedback">We don&apos;t have so much!</div>
                 </div>
               </label>
               <div className="price-item"><b>Total price</b><b>{isTotalNumber}</b></div>
@@ -117,6 +123,8 @@ const mapStateToProps = (state) => {
     maxCount: state.bookDetails.maxCount,
     minCount: state.bookDetails.minCount,
     cartItems: state.bookDetails.cartItems,
+    token: state.userData.token,
+    isAuthorized: state.userData.isAuthorized,
     loading: state.bookDetails.loading
   }
 };
@@ -130,4 +138,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BookDetailsContainer);
+)(BookDetails);
