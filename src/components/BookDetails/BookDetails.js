@@ -123,7 +123,7 @@ const mapStateToProps = (state) => {
     maxCount: state.bookDetails.maxCount,
     minCount: state.bookDetails.minCount,
     cartItems: state.bookDetails.cartItems,
-    token: state.userData.token,
+    token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized,
     loading: state.bookDetails.loading
   }
