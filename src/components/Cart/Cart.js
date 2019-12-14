@@ -4,15 +4,12 @@ import './cart.css'
 import StoreService from "../../services/StoreService";
 import { purchaseBooks } from "../../actions";
 
-const Cart = ({ items, total, purchaseBooks, isCartEmpty }) => {
+const Cart = ({ items, total, purchaseBooks, isCartEmpty, token }) => {
   const purchase = () => {
-    StoreService.post('/purchase', { "books": items }, '5686wvoxndcplla5xi8qte')
+    StoreService.post('/purchase', { "books": items }, token)
       .then((data) => {
-        console.log(data);
-      })
-      .then(() => {
-        purchaseBooks()
-      })
+        purchaseBooks(data.message)
+      });
   };
 
   const renderRow = (item) => {
@@ -67,6 +64,8 @@ const mapStateToProps = (state) => ({
   items: state.bookDetails.cartItems,
   total: state.bookDetails.orderTotal,
   isCartEmpty: state.bookDetails.isCartEmpty,
+  purchaseMessage: state.bookDetails.purchaseMessage,
+  token: state.userData.token,
 });
 
 const mapDispatchToProps = {

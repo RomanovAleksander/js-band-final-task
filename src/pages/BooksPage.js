@@ -1,12 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Header } from '../components/Header';
 import { BookList } from '../components/BookList';
 import { Filter } from '../components/Filter';
 import { ScrollArrow } from "../components/ScrollArrow";
 
-const HomePage = ({ history }) => {
+const BooksPage = ({ history }) => {
   return (
     <>
+      <Header />
       <Filter />
       <BookList onView={(bookId) => {
         history.push(`/books/${bookId}`);
@@ -16,4 +18,4 @@ const HomePage = ({ history }) => {
   );
 };
 
-export default withRouter(HomePage);
+export default withRouter(BooksPage);

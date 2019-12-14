@@ -48,24 +48,27 @@ const bookAddedToCart = (bookId, count) => {
   }
 };
 
-const purchaseBooks = () => {
+const purchaseBooks = (message) => {
   return {
-    type: 'PURCHASE_SUCCESS'
+    type: 'PURCHASE_SUCCESS',
+    payload: message
   }
 };
 
-// const usernameRequested = () => {
-//   return {
-//     type: 'FETCH_USER_REQUEST'
-//   }
-// };
-
-const usernameLoaded = (user) => {
+const userSignIn = (user) => {
   return {
     type: 'FETCH_USER_SUCCESS',
     payload: user
   }
 };
+
+const userSignOut = (user) => {
+  return {
+    type: 'SIGN_OUT',
+    payload: user
+  }
+};
+
 
 export {
   booksLoaded,
@@ -76,5 +79,6 @@ export {
   filterBooks,
   bookAddedToCart,
   purchaseBooks,
-  usernameLoaded
+  userSignIn,
+  userSignOut
 }

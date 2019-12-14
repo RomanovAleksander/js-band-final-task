@@ -13,6 +13,10 @@ export const userData = (state = initialState, action) => {
         ...payload,
         isAuthorized: true
       };
+    case 'SIGN_OUT':
+      return {
+        ...initialState
+      };
 
     default:
       return state;
