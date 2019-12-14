@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   books: [],
+  booksQuantity: null,
   searchText: '',
   filterPrice: 'all',
   loading: true
@@ -26,6 +27,7 @@ export const bookList = (state = initialState, action) => {
       return {
         ...state,
         books: payload,
+        booksQuantity: payload.length,
         loading: false
       };
     case SEARCH_BOOKS:

@@ -61,10 +61,15 @@ const bookAddedToCart = (bookId, count) => {
   }
 };
 
-const purchaseBooks = (message) => {
+const purchaseBooks = () => {
   return {
-    type: PURCHASE_SUCCESS,
-    payload: message
+    type: PURCHASE_SUCCESS
+  }
+};
+
+const purchaseRequest = () => {
+  return {
+    type: 'PURCHASE_REQUEST'
   }
 };
 
@@ -91,6 +96,7 @@ export {
   filterBooks,
   bookAddedToCart,
   purchaseBooks,
+  purchaseRequest,
   userSignIn,
   userSignOut
 }
