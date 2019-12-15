@@ -76,6 +76,9 @@ class BookListContainer extends React.Component {
     }
 
     if (error) {
+      if (error.status === 401) {
+        return <ErrorIndicator status={error.status}/>
+      }
       return <ErrorIndicator />
     }
 

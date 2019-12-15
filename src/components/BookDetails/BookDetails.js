@@ -74,7 +74,10 @@ class BookDetails extends React.Component {
     }
 
     if (error) {
-      return <ErrorIndicator/>
+      if (error.status === 401) {
+        return <ErrorIndicator status={error.status}/>
+      }
+      return <ErrorIndicator />
     }
 
     if (!isAuthorized) {
