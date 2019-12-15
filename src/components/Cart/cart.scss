@@ -1,0 +1,52 @@
+@import '../../styles/variables.scss';
+
+.cart-container {
+    position: relative;
+    padding-top: 55px;
+    color: $text-color;
+    .btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .table-wrapper {
+        width: 100%;
+    }
+    table {
+        width: 100%;
+    }
+    table td, th {
+        padding: 10px;
+        text-align: left;
+    }
+    table tr {
+        border: 1px solid #6c757d;
+    }
+    table td:nth-last-child(1), th:nth-last-child(1) {
+        padding: 10px;
+        text-align: right;
+    }
+    .total {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+}
+
+.container {
+    .cartEmpty {
+        font-size: 3rem;
+    }
+    .cartEmptyText {
+        font-size: 1.2rem;
+        margin-left: 1rem;
+    }
+}
+
+.purchase-message {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-top: 6rem;
+}

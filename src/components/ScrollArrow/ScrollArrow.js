@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './scrollArrow.css'
+import './scrollArrow.scss'
 
 export class ScrollArrow extends React.Component {
   constructor() {

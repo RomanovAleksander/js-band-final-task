@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+body {
+    background-color: $main-bg;
+    color: $text-color;
+    line-height: normal;
+}
+
+.btn-primary {
+    background-color: $btn-color;
+    border-color: $btn-color;
+    &:hover {
+        background-color: $btn-hover-color;
+        border-color: $btn-hover-color;
+    }
+    &:focus {
+        background-color: $btn-hover-color;
+        border-color: $btn-hover-color;
+    }
+}

@@ -2,6 +2,7 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
     width: max-content;
+    border-radius: .25rem;
 }
 
 .already-authorized {
@@ -9,4 +10,10 @@
     justify-content: center;
     margin: 30% auto;
     font-size: 1.5rem;
+}
+
+.valid-img, .invalid-img {
+    position: absolute;
+    top: -270px;
+    left: 39px;
 }

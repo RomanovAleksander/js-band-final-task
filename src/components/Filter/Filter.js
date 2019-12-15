@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchBooks, filterBooks } from "../../actions";
-import './filter.css';
+import './filter.scss';
 
 class Filter extends React.Component {
   onSearchChange = ({ target }) => {

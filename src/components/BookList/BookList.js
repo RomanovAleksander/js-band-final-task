@@ -7,7 +7,7 @@ import { booksLoaded, booksRequested, booksError } from '../../actions';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from "../ErrorIndicator";
 
-import './bookList.css';
+import './bookList.scss';
 
 const BookList = ({ books, onView }) => {
   return (
