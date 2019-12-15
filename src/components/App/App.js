@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from "react-redux";
-import { BooksPage, CartPage, SignInPage, BookPage, NotFoundPage } from "../../pages";
+import { connect } from 'react-redux';
 import PrivateRoute from '../Routing/PrivateRoute';
+import { BooksPage, CartPage, SignInPage, BookPage, NotFoundPage } from '../../pages';
 
 import './app.scss';
 
@@ -14,9 +14,9 @@ const App = ({ isAuthorized }) => {
                   to={isAuthorized ? "/books" : "/signin"}
                   exact
         />
-        <Route path="/signin" component={SignInPage}/>
-        <PrivateRoute path="/books" component={BooksPage} exact/>
-        <PrivateRoute path="/cart" component={CartPage}/>
+        <Route path="/signin" component={SignInPage} />
+        <PrivateRoute path="/books" component={BooksPage} exact />
+        <PrivateRoute path="/cart" component={CartPage} />
         <PrivateRoute path="/books/:id"
                       component={({match, booksQuantity}) => {
                         const {id} = match.params;
@@ -26,7 +26,7 @@ const App = ({ isAuthorized }) => {
                         return <BookPage bookId={id} />
                       }}
                       />
-        <Route component={NotFoundPage}/>
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   )

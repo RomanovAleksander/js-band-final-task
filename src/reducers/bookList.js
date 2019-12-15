@@ -5,7 +5,7 @@ import {
   SEARCH_BOOKS,
   FILTER_BOOKS,
   SIGN_OUT
-} from '../actions/types'
+} from '../actions/types';
 
 const initialState = {
   books: [],
@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export const bookList = (state = initialState, action) => {
-  const {type, payload} = action;
+  const { type, payload } = action;
   switch (type) {
     case FETCH_BOOKS_REQUEST:
       return {

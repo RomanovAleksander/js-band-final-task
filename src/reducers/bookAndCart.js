@@ -7,7 +7,7 @@ import {
   PURCHASE_SUCCESS,
   PURCHASE_FAILURE,
   SIGN_OUT
-} from '../actions/types'
+} from '../actions/types';
 
 const initialState = {
   bookDetails: {
@@ -62,7 +62,7 @@ const updateCartItem = (book, item, count) => {
 };
 
 export const bookAndCart = (state = initialState, action) => {
-  const {type, payload} = action;
+  const { type, payload } = action;
   switch (type) {
     case FETCH_BOOK_REQUEST:
       return {
@@ -109,7 +109,7 @@ export const bookAndCart = (state = initialState, action) => {
           loading: false
         }
       };
-      case PURCHASE_FAILURE:
+    case PURCHASE_FAILURE:
       return {
         ...initialState,
         cart: {

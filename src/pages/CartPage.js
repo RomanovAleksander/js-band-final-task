@@ -6,7 +6,7 @@ export const CartPage = () => {
   return (
     <>
       <Header />
-      <Cart/>
+      <Cart />
     </>
   );
 };

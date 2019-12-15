@@ -1,10 +1,11 @@
 import React  from 'react';
 import { connect } from 'react-redux';
+import { StoreService } from '../../services';
+import { purchaseRequest, purchaseSuccess, purchaseError } from '../../actions';
+import { Spinner } from '../Spinner';
+import { ErrorIndicator } from '../ErrorIndicator';
+
 import './cart.scss'
-import { StoreService } from "../../services";
-import { purchaseRequest, purchaseSuccess, purchaseError } from "../../actions";
-import { Spinner } from "../Spinner";
-import { ErrorIndicator } from "../ErrorIndicator";
 
 class Cart extends React.Component {
   constructor() {

@@ -1,8 +1,7 @@
 import React from 'react';
 import './bookListItem.scss';
 
-
-export const BookListItem = ({book, onView}) => {
+export const BookListItem = ({ book, onView }) => {
   const { title, author, price, cover } = book;
   return (
     <div className="book-list-item">

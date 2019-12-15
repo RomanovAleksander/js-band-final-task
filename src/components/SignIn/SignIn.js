@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from "react-redux";
-import { StoreService, LocalStorageService }  from "../../services";
+import { connect } from 'react-redux';
+import { StoreService, LocalStorageService }  from '../../services';
 import { userSignIn } from '../../actions';
 
 import './signIn.scss';
@@ -38,7 +38,7 @@ class SignIn extends React.Component {
   render() {
     const { username, minLength,  maxLength } = this.state;
     const { isAuthorized } = this.props;
-    const isValid =  (username.length >= minLength && username.length <= maxLength) ? 'is-valid' : 'is-invalid';
+    const isValid = (username.length >= minLength && username.length <= maxLength) ? 'is-valid' : 'is-invalid';
 
     if (isAuthorized) {
       return <div className="already-authorized">You are already authorized</div>
