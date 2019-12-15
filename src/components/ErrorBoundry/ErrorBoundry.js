@@ -1,6 +1,5 @@
 import React from 'react';
-
-import './errorBoundry.css';
+import { ErrorIndicator } from '../ErrorIndicator';
 
 export class ErrorBoundry extends React.Component {
   constructor() {
@@ -16,7 +15,7 @@ export class ErrorBoundry extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <div className="error-boundry">Ops... Something went wrong</div>
+      return <ErrorIndicator />
     }
 
     return this.props.children;

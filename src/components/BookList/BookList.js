@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { BookListItem } from '../BookListItem';
 
 import { StoreService } from '../../services';
-import { booksLoaded, booksRequested } from '../../actions';
+import { booksLoaded, booksRequested, booksError } from '../../actions';
 import { Spinner } from '../Spinner';
+import { ErrorIndicator } from "../ErrorIndicator";
+
 import './bookList.css';
 
 const BookList = ({ books, onView }) => {
@@ -27,13 +29,13 @@ const BookList = ({ books, onView }) => {
 
 class BookListContainer extends React.Component {
   componentDidMount() {
-    const { booksLoaded, booksRequested, token } = this.props;
+    const { booksLoaded, booksRequested, booksError, token } = this.props;
 
     booksRequested();
     StoreService.get('/books', token)
       .then((data) => booksLoaded(data))
       .catch((err) => {
-        console.log(err)
+        booksError(err)
       })
   }
 
@@ -63,10 +65,18 @@ class BookListContainer extends React.Component {
   }
 
   render() {
-    const {books, loading, searchText, filterPrice, onView, isAuthorized} = this.props;
+    const {
+      books, loading, searchText,
+      filterPrice, onView, isAuthorized,
+      error
+    } = this.props;
 
     if (loading) {
       return <Spinner/>
+    }
+
+    if (error) {
+      return <ErrorIndicator />
     }
 
     if (!isAuthorized) {
@@ -93,13 +103,15 @@ const mapStateToProps = (state) => {
     filterPrice: state.bookList.filterPrice,
     token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized,
-    loading: state.bookList.loading
+    loading: state.bookList.loading,
+    error: state.bookList.error
   }
 };
 
 const mapDispatchToProps = {
   booksLoaded,
-  booksRequested
+  booksRequested,
+  booksError
 };
 
 export default connect(

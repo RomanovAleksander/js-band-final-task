@@ -1,12 +1,16 @@
 import {
   FETCH_BOOKS_REQUEST,
   FETCH_BOOKS_SUCCESS,
+  FETCH_BOOKS_FAILURE,
   FETCH_BOOK_REQUEST,
   FETCH_BOOK_SUCCESS,
+  FETCH_BOOK_FAILURE,
   SEARCH_BOOKS,
   FILTER_BOOKS,
   BOOK_ADDED_TO_CART,
+  PURCHASE_REQUEST,
   PURCHASE_SUCCESS,
+  PURCHASE_FAILURE,
   SIGN_IN,
   SIGN_OUT
 } from './types';
@@ -24,6 +28,13 @@ const booksLoaded = (newBooks) => {
   }
 };
 
+const booksError = (error) => {
+  return {
+    type: FETCH_BOOKS_FAILURE,
+    payload: error
+  };
+};
+
 const bookRequested = () => {
   return {
     type: FETCH_BOOK_REQUEST
@@ -35,6 +46,13 @@ const bookLoaded = (newBook) => {
     type: FETCH_BOOK_SUCCESS,
     payload: newBook
   }
+};
+
+const bookError = (error) => {
+  return {
+    type: FETCH_BOOK_FAILURE,
+    payload: error
+  };
 };
 
 const searchBooks = (searchText) => ({
@@ -61,15 +79,22 @@ const bookAddedToCart = (bookId, count) => {
   }
 };
 
-const purchaseBooks = () => {
+const purchaseRequest = () => {
+  return {
+    type: PURCHASE_REQUEST
+  }
+};
+
+const purchaseSuccess = () => {
   return {
     type: PURCHASE_SUCCESS
   }
 };
 
-const purchaseRequest = () => {
+const purchaseError = (error) => {
   return {
-    type: 'PURCHASE_REQUEST'
+    type: PURCHASE_FAILURE,
+    payload: error
   }
 };
 
@@ -86,17 +111,19 @@ const userSignOut = () => {
   }
 };
 
-
 export {
   booksLoaded,
   booksRequested,
+  booksError,
   searchBooks,
   bookLoaded,
   bookRequested,
+  bookError,
   filterBooks,
   bookAddedToCart,
-  purchaseBooks,
   purchaseRequest,
+  purchaseSuccess,
+  purchaseError,
   userSignIn,
   userSignOut
 }

@@ -2,8 +2,9 @@ import React  from 'react';
 import { connect } from 'react-redux';
 import './cart.css'
 import { StoreService } from "../../services";
-import { purchaseBooks, purchaseRequest } from "../../actions";
+import { purchaseRequest, purchaseSuccess, purchaseError } from "../../actions";
 import { Spinner } from "../Spinner";
+import { ErrorIndicator } from "../ErrorIndicator";
 
 class Cart extends React.Component {
   constructor() {
@@ -15,16 +16,19 @@ class Cart extends React.Component {
   }
 
   purchase = () => {
-    const { items, token, purchaseBooks, purchaseRequest } = this.props;
+    const { items, token, purchaseRequest, purchaseSuccess, purchaseError } = this.props;
 
     purchaseRequest();
     StoreService.post('/purchase', { "books": items }, token)
       .then((data) => {
-        purchaseBooks();
+        purchaseSuccess();
         this.setState({
           isShow: true,
           message: data.message
         });
+      })
+      .catch((err) => {
+        purchaseError(err)
       });
   };
 
@@ -69,9 +73,12 @@ class Cart extends React.Component {
   };
 
   renderCartItems = () => {
-    const { isCartEmpty, items, total } = this.props;
+    const { isCartEmpty, items, total, error } = this.props;
     const { message, isShow } = this.state;
 
+    if (error) {
+      return <ErrorIndicator />
+    }
     if (isShow) {
       return <div className="purchase-message">{message}</div>
     }
@@ -103,12 +110,14 @@ const mapStateToProps = (state) => ({
   total: state.bookAndCart.cart.orderTotal,
   isCartEmpty: state.bookAndCart.cart.isCartEmpty,
   token: state.userData.user.token,
-  loading: state.bookAndCart.cart.loading
+  loading: state.bookAndCart.cart.loading,
+  error: state.bookAndCart.cart.error
 });
 
 const mapDispatchToProps = {
-  purchaseBooks,
-  purchaseRequest
+  purchaseRequest,
+  purchaseSuccess,
+  purchaseError
 };
 
 export default connect(

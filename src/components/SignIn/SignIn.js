@@ -32,10 +32,7 @@ class SignIn extends React.Component {
         this.props.userSignIn(data);
         LocalStorageService.setItem('userData', data);
         history.push(`/books`);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      });
   };
 
   render() {
