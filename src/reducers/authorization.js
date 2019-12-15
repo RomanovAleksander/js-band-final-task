@@ -2,6 +2,7 @@ import {
   SIGN_IN,
   SIGN_OUT
 } from '../actions/types';
+import { LocalStorageService } from '../services';
 
 const initialState = {
   user: {
@@ -16,7 +17,7 @@ export const userData = (state , action) => {
   if (state === undefined) {
     if (localStorage.userData) {
       return {
-        user: JSON.parse(localStorage.getItem('userData')),
+        user: LocalStorageService.getItem('userData'),
         isAuthorized: true
       }
     } else {

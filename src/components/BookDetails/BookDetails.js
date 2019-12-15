@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import StoreService from "../../services/StoreService";
+import { StoreService } from "../../services";
 import { Spinner } from "../Spinner";
 import {
   bookLoaded,
@@ -30,7 +30,10 @@ class BookDetails extends React.Component {
     StoreService.get(`/books/${bookId}`, token)
       .then((data) => {
         bookLoaded(data);
-      });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   onCountChange = ({ target }) => {
@@ -119,13 +122,13 @@ class BookDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    book: state.bookDetails.book,
-    maxCount: state.bookDetails.maxCount,
-    minCount: state.bookDetails.minCount,
-    cartItems: state.bookDetails.cartItems,
+    book: state.bookAndCart.bookDetails.book,
+    maxCount: state.bookAndCart.bookDetails.maxCount,
+    minCount: state.bookAndCart.bookDetails.minCount,
+    cartItems: state.bookAndCart.cart.cartItems,
     token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized,
-    loading: state.bookDetails.loading
+    loading: state.bookAndCart.bookDetails.loading
   }
 };
 

@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import './cart.css'
-import StoreService from "../../services/StoreService";
+import { StoreService } from "../../services";
 import { purchaseBooks, purchaseRequest } from "../../actions";
 import { Spinner } from "../Spinner";
 
@@ -83,7 +83,7 @@ class Cart extends React.Component {
   };
 
   render() {
-    const { isCartEmpty, loadingC } = this.props;
+    const { isCartEmpty, loading } = this.props;
 
     return (
       <div className="cart-container">
@@ -92,18 +92,18 @@ class Cart extends React.Component {
                 disabled={isCartEmpty}>
           Purchase
         </button>
-        {loadingC ? <Spinner /> : this.renderCartItems()}
+        {loading ? <Spinner /> : this.renderCartItems()}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  items: state.bookDetails.cartItems,
-  total: state.bookDetails.orderTotal,
-  isCartEmpty: state.bookDetails.isCartEmpty,
+  items: state.bookAndCart.cart.cartItems,
+  total: state.bookAndCart.cart.orderTotal,
+  isCartEmpty: state.bookAndCart.cart.isCartEmpty,
   token: state.userData.user.token,
-  loadingC: state.bookDetails.loadingC
+  loading: state.bookAndCart.cart.loading
 });
 
 const mapDispatchToProps = {
