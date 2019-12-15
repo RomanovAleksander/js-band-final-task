@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import StoreService from "../../services/StoreService";
+import { StoreService, LocalStorageService }  from "../../services";
 import { userSignIn } from '../../actions';
 
 import './signIn.css';
@@ -30,12 +30,12 @@ class SignIn extends React.Component {
     StoreService.post('/signin', { "username": username })
       .then((data) => {
         this.props.userSignIn(data);
-        localStorage.setItem(`userData`, JSON.stringify(data));
-        console.log(data, localStorage)
-      })
-      .then(() => {
+        LocalStorageService.setItem('userData', data);
         history.push(`/books`);
-      });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
 
   render() {

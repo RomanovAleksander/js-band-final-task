@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BookListItem } from '../BookListItem';
 
-import StoreService from '../../services/StoreService';
+import { StoreService } from '../../services';
 import { booksLoaded, booksRequested } from '../../actions';
 import { Spinner } from '../Spinner';
 import './bookList.css';
@@ -32,8 +32,8 @@ class BookListContainer extends React.Component {
     booksRequested();
     StoreService.get('/books', token)
       .then((data) => booksLoaded(data))
-      .catch(() => {
-
+      .catch((err) => {
+        console.log(err)
       })
   }
 

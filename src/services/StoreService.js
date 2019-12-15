@@ -1,16 +1,19 @@
 class StoreService {
   _url = 'https://js-band-api.glitch.me';
 
+  errObj = (url, status) => {
+    return {
+      message: `Invalid request: ${url}, status ${status}`,
+      status: status
+    };
+  };
+
   async fetchData(url, option) {
-    try {
-      const res = await fetch(`${this._url}${url}`, option);
-      if (!res.ok) {
-        throw new Error('Invalid request');
-      }
-      return await res.json();
-    } catch (err) {
-      return err
+    const res = await fetch(`${this._url}${url}`, option);
+    if (!res.ok) {
+      throw this.errObj(`${this._url}${url}`, res.status);
     }
+    return res.json();
   }
 
   async get(url, token) {

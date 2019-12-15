@@ -43,7 +43,7 @@ const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSign
 
 const mapStateToProps = (state) => {
   return {
-    booksInCart: state.bookDetails.booksInCart,
+    booksInCart: state.bookAndCart.cart.booksInCart,
     username: state.userData.user.username,
     avatar: state.userData.user.avatar,
     token: state.userData.user.token,

@@ -7,16 +7,20 @@ import {
 } from '../actions/types'
 
 const initialState = {
-  book: null,
-  bookId: null,
-  maxCount: 0,
-  minCount: 0,
-  cartItems: [],
-  orderTotal: 0,
-  booksInCart: 0,
-  isCartEmpty: true,
-  loading: true,
-  loadingC: false,
+  bookDetails: {
+    book: null,
+    bookId: null,
+    maxCount: 0,
+    minCount: 0,
+    loading: true,
+  },
+  cart: {
+    cartItems: [],
+    orderTotal: 0,
+    booksInCart: 0,
+    isCartEmpty: true,
+    loading: false,
+  }
 };
 
 const updateCartItems = (cartItems, item, idx) => {
@@ -52,34 +56,47 @@ const updateCartItem = (book, item, count) => {
   }
 };
 
-export const bookDetails = (state = initialState, action) => {
+export const bookAndCart = (state = initialState, action) => {
   const {type, payload} = action;
   switch (type) {
     case FETCH_BOOK_REQUEST:
       return {
         ...state,
-        book: [],
-        loading: true
+        bookDetails: {
+          ...state.bookDetails,
+          book: {},
+          loading: true
+        }
       };
     case FETCH_BOOK_SUCCESS:
       return {
         ...state,
-        book: payload,
-        maxCount: payload.count,
-        loading: false
+        bookDetails: {
+          ...state.bookDetails,
+          book: payload,
+          maxCount: payload.count,
+          loading: false
+        }
       };
     case 'PURCHASE_REQUEST':
       return {
         ...initialState,
-        loadingC: true
+        cart: {
+          ...initialState.cart,
+          loading: true
+        }
       };
     case PURCHASE_SUCCESS:
       return {
         ...initialState,
-        loadingC: false
+        cart: {
+          ...initialState.cart,
+          loading: false
+        }
       };
     case BOOK_ADDED_TO_CART:
-      const { book, cartItems, orderTotal, booksInCart } = state;
+      const { book } = state.bookDetails;
+      const { cartItems, orderTotal, booksInCart } = state.cart;
       const itemIndex = cartItems.findIndex((item) => item.id === payload.bookId);
       const item = cartItems[itemIndex];
       const newItem = updateCartItem(book, item, payload.count);
@@ -88,10 +105,13 @@ export const bookDetails = (state = initialState, action) => {
 
       return {
         ...state,
-        isCartEmpty: false,
-        cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
-        orderTotal: newTotal,
-        booksInCart: newBooksInCart
+        cart: {
+          ...state.cart,
+          isCartEmpty: false,
+          cartItems: updateCartItems(cartItems, newItem, itemIndex),
+          orderTotal: newTotal,
+          booksInCart: newBooksInCart
+        }
       };
     case SIGN_OUT:
       return {
