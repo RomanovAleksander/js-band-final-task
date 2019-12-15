@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './errorIndicator.css';
+import './errorIndicator.scss';
 
 export const ErrorIndicator = ({ status }) => {
   return (

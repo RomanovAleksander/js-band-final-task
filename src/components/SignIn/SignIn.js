@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { StoreService, LocalStorageService }  from "../../services";
 import { userSignIn } from '../../actions';
 
-import './signIn.css';
+import './signIn.scss';
 
 class SignIn extends React.Component {
   constructor() {
@@ -45,10 +45,10 @@ class SignIn extends React.Component {
     }
 
     return (
-      <div className="container d-flex justify-content-center">
+      <div className="container d-flex justify-content-center sign-in-wrapper">
         <form className="d-flex flex-column align-items-center"
               onSubmit={this.onSubmit}>
-          <img src="https://api.adorable.io/avatars/100/orange.png" alt="avatar" className="sign-in-avatar"/>
+          <img src="https://api.adorable.io/avatars/face/eyes7/nose3/mouth3/2a5582/150" alt="avatar" className="sign-in-avatar"/>
           <label className="d-flex flex-column align-items-center" htmlFor="sign-in-input">
             <b>Username</b>
             <div className="d-flex flex-column justify-content-start mt-2">
@@ -61,7 +61,13 @@ class SignIn extends React.Component {
                      placeholder="type Username"
                      id="sign-in-input"
                      required />
-              <div className="invalid-feedback text-center">Field is not valid!</div>
+              <div className="invalid-feedback text-center position-relative">
+                Field is not valid!
+                <img src="https://api.adorable.io/avatars/face/eyes8/nose3/mouth7/dc3545/155" alt="avatar" className="sign-in-avatar invalid-img"/>
+              </div>
+              <div className="valid-feedback text-center position-relative">
+                <img src="https://api.adorable.io/avatars/face/eyes1/nose3/mouth9/28a745/155" alt="avatar" className="sign-in-avatar valid-img"/>
+              </div>
             </div>
           </label>
           <button className="btn btn-primary sign-in w-100"

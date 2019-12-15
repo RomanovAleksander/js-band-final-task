@@ -1,6 +1,6 @@
 import React  from 'react';
 import { connect } from 'react-redux';
-import './cart.css'
+import './cart.scss'
 import { StoreService } from "../../services";
 import { purchaseRequest, purchaseSuccess, purchaseError } from "../../actions";
 import { Spinner } from "../Spinner";
@@ -91,10 +91,11 @@ class Cart extends React.Component {
 
   render() {
     const { isCartEmpty, loading } = this.props;
+    const isEmpty = isCartEmpty ? 'btn-secondary' : 'btn-primary';
 
     return (
       <div className="cart-container">
-        <button className="btn btn-primary"
+        <button className={`btn ${isEmpty}`}
                 onClick={this.purchase}
                 disabled={isCartEmpty}>
           Purchase

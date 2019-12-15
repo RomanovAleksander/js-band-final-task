@@ -10,7 +10,7 @@ import {
   bookAddedToCart
 } from "../../actions";
 
-import './bookDetails.css';
+import './bookDetails.scss';
 
 class BookDetails extends React.Component {
   constructor() {

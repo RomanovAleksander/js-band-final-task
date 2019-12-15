@@ -1,5 +1,5 @@
 import React from 'react';
-import './bookListItem.css';
+import './bookListItem.scss';
 
 
 export const BookListItem = ({book, onView}) => {

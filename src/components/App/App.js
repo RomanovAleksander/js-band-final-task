@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BooksPage, CartPage, SignInPage, BookPage, NotFoundPage } from "../../pages";
 import PrivateRoute from '../Routing/PrivateRoute';
 
-import './app.css';
+import './app.scss';
 
 const App = ({ isAuthorized }) => {
   return (
