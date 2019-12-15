@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { connect } from "react-redux";
-import { userSignOut } from "../../actions";
+import { connect } from 'react-redux';
+import { userSignOut } from '../../actions';
 
 import './header.scss';
 
-const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSignOut}) => {
+const Header = ({ username, avatar, isAuthorized, booksInCart, history, userSignOut }) => {
   const signOut = () => {
     userSignOut();
     history.push(`/signin`);

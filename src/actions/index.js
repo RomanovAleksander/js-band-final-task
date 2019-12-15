@@ -126,4 +126,4 @@ export {
   purchaseError,
   userSignIn,
   userSignOut
-}
+};

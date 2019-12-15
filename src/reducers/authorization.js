@@ -13,7 +13,7 @@ const initialState = {
   isAuthorized: false
 };
 
-export const userData = (state , action) => {
+export const userData = (state, action) => {
   if (state === undefined) {
     if (localStorage.userData) {
       return {
@@ -25,7 +25,7 @@ export const userData = (state , action) => {
     }
   }
 
-  const {type, payload} = action;
+  const { type, payload } = action;
   switch (type) {
     case SIGN_IN:
       return {

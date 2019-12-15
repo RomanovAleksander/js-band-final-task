@@ -1,1 +1,1 @@
-export {ScrollArrow} from './ScrollArrow';
+export { ScrollArrow } from './ScrollArrow';

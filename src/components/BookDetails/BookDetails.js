@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { StoreService } from "../../services";
-import { Spinner } from "../Spinner";
-import { ErrorIndicator } from "../ErrorIndicator";
+import { connect } from 'react-redux';
+import { StoreService } from '../../services';
+import { Spinner } from '../Spinner';
+import { ErrorIndicator } from '../ErrorIndicator';
 import {
   bookLoaded,
   bookRequested,

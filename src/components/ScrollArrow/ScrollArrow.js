@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './scrollArrow.scss'
 
 export class ScrollArrow extends React.Component {

@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BookListItem } from '../BookListItem';
-
 import { StoreService } from '../../services';
 import { booksLoaded, booksRequested, booksError } from '../../actions';
+import { BookListItem } from '../BookListItem';
 import { Spinner } from '../Spinner';
-import { ErrorIndicator } from "../ErrorIndicator";
+import { ErrorIndicator } from '../ErrorIndicator';
 
 import './bookList.scss';
 
@@ -94,7 +93,7 @@ class BookListContainer extends React.Component {
 
       return <BookList
         onView={onView}
-        books={visibleBooks}/>;
+        books={visibleBooks} />;
     }
   }
 }

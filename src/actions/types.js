@@ -28,4 +28,4 @@ export {
   PURCHASE_FAILURE,
   SIGN_IN,
   SIGN_OUT
-}
+};
