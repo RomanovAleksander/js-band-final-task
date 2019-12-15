@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from "react-redux";
 import { StoreService } from "../../services";
 import { Spinner } from "../Spinner";
+import { ErrorIndicator } from "../ErrorIndicator";
 import {
   bookLoaded,
   bookRequested,
+  bookError,
   bookAddedToCart
 } from "../../actions";
 
@@ -22,6 +24,7 @@ class BookDetails extends React.Component {
     const {
       bookLoaded,
       bookRequested,
+      bookError,
       bookId,
       token
     } = this.props;
@@ -32,11 +35,11 @@ class BookDetails extends React.Component {
         bookLoaded(data);
       })
       .catch((err) => {
-        console.log(err)
+        bookError(err);
       })
   }
 
-  onCountChange = ({ target }) => {
+  onCountChange = ({target}) => {
     this.setState({
       booksCount: parseFloat(target.value)
     });
@@ -44,8 +47,8 @@ class BookDetails extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { book, bookAddedToCart } = this.props;
-    const { booksCount } = this.state;
+    const {book, bookAddedToCart} = this.props;
+    const {booksCount} = this.state;
 
     bookAddedToCart(book.id, booksCount);
     this.setState({
@@ -54,15 +57,24 @@ class BookDetails extends React.Component {
   };
 
   render() {
-    const {book, loading, maxCount, minCount, cartItems, isAuthorized} = this.props;
-    const { booksCount } = this.state;
+    const {
+      book, loading,
+      maxCount, minCount,
+      cartItems, isAuthorized,
+      error
+    } = this.props;
+    const {booksCount} = this.state;
 
     const cartBookIndex = cartItems.findIndex((item) => item.id === book.id);
     const cartBook = cartItems[cartBookIndex];
     const cartBookCount = cartBook ? cartBook.count : 0;
 
     if (loading) {
-      return <Spinner />
+      return <Spinner/>
+    }
+
+    if (error) {
+      return <ErrorIndicator/>
     }
 
     if (!isAuthorized) {
@@ -70,9 +82,11 @@ class BookDetails extends React.Component {
     }
 
     if (book) {
-      const { title, author, level, tags, cover, description, price } = book;
+      const {
+        title, author, level, tags, cover, description, price
+      } = book;
       const maxValue = maxCount - cartBookCount;
-      const isValid =  (booksCount <= maxValue || isNaN(booksCount)) ? 'is-valid' : 'is-invalid';
+      const isValid = (booksCount <= maxValue || isNaN(booksCount)) ? 'is-valid' : 'is-invalid';
       const calcTotal = (price * booksCount).toFixed(2);
       const isTotalNumber = isNaN(booksCount) ? 0 : calcTotal;
 
@@ -103,7 +117,7 @@ class BookDetails extends React.Component {
                          min={minCount}
                          value={booksCount}
                          id="count-input"
-                         required />
+                         required/>
                   <div className="invalid-feedback">We don&apos;t have so much =(</div>
                 </div>
               </label>
@@ -128,13 +142,15 @@ const mapStateToProps = (state) => {
     cartItems: state.bookAndCart.cart.cartItems,
     token: state.userData.user.token,
     isAuthorized: state.userData.isAuthorized,
-    loading: state.bookAndCart.bookDetails.loading
+    loading: state.bookAndCart.bookDetails.loading,
+    error: state.bookAndCart.bookDetails.error
   }
 };
 
 const mapDispatchToProps = {
   bookLoaded,
   bookRequested,
+  bookError,
   bookAddedToCart
 };
 

@@ -1,8 +1,11 @@
 import {
   FETCH_BOOK_REQUEST,
   FETCH_BOOK_SUCCESS,
+  FETCH_BOOK_FAILURE,
   BOOK_ADDED_TO_CART,
+  PURCHASE_REQUEST,
   PURCHASE_SUCCESS,
+  PURCHASE_FAILURE,
   SIGN_OUT
 } from '../actions/types'
 
@@ -13,6 +16,7 @@ const initialState = {
     maxCount: 0,
     minCount: 0,
     loading: true,
+    error: null
   },
   cart: {
     cartItems: [],
@@ -20,6 +24,7 @@ const initialState = {
     booksInCart: 0,
     isCartEmpty: true,
     loading: false,
+    error: null
   }
 };
 
@@ -78,7 +83,17 @@ export const bookAndCart = (state = initialState, action) => {
           loading: false
         }
       };
-    case 'PURCHASE_REQUEST':
+    case FETCH_BOOK_FAILURE:
+      return {
+        ...state,
+        bookDetails: {
+          ...state.bookDetails,
+          book: {},
+          loading: false,
+          error: payload
+        }
+      };
+    case PURCHASE_REQUEST:
       return {
         ...initialState,
         cart: {
@@ -92,6 +107,15 @@ export const bookAndCart = (state = initialState, action) => {
         cart: {
           ...initialState.cart,
           loading: false
+        }
+      };
+      case PURCHASE_FAILURE:
+      return {
+        ...initialState,
+        cart: {
+          ...initialState.cart,
+          loading: false,
+          error: payload
         }
       };
     case BOOK_ADDED_TO_CART:

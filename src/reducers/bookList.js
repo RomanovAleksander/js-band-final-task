@@ -1,6 +1,7 @@
 import {
   FETCH_BOOKS_REQUEST,
   FETCH_BOOKS_SUCCESS,
+  FETCH_BOOKS_FAILURE,
   SEARCH_BOOKS,
   FILTER_BOOKS,
   SIGN_OUT
@@ -11,7 +12,8 @@ const initialState = {
   booksQuantity: null,
   searchText: '',
   filterPrice: 'all',
-  loading: true
+  loading: true,
+  error: null
 };
 
 export const bookList = (state = initialState, action) => {
@@ -29,6 +31,13 @@ export const bookList = (state = initialState, action) => {
         books: payload,
         booksQuantity: payload.length,
         loading: false
+      };
+    case FETCH_BOOKS_FAILURE:
+      return {
+        ...state,
+        books: [],
+        loading: false,
+        error: payload
       };
     case SEARCH_BOOKS:
       return {
