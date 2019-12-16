@@ -48,7 +48,6 @@ class SignIn extends React.Component {
       <div className="container d-flex justify-content-center sign-in-wrapper">
         <form className="d-flex flex-column align-items-center"
               onSubmit={this.onSubmit}>
-          <img src="https://api.adorable.io/avatars/face/eyes7/nose3/mouth3/2a5582/150" alt="avatar" className="sign-in-avatar"/>
           <label className="d-flex flex-column align-items-center" htmlFor="sign-in-input">
             <b>Username</b>
             <div className="d-flex flex-column justify-content-start mt-2">
