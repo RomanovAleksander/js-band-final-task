@@ -36,7 +36,6 @@
 
 ### Installing
 ```
-$ git init - create an empty Git repository or reinitialize an existing one
 $ git clone https://github.com/RomanovAleksander/js-band-final-task.git - clone this repository
 $ npm install || yarn install - install dependencies
 ```
@@ -63,18 +62,54 @@ $ npm run deploy - deploy application on gh-pages
 │   │   └── types.js
 │   ├── components
 │   │   ├── App
+│   │   │   ├── App.js
+│   │   │   ├── app.scss
+│   │   │   └── index.js
 │   │   ├── BookDetails
+│   │   │   ├── BookDetails.js
+│   │   │   ├── bookDetails.scss
+│   │   │   └── index.js
 │   │   ├── BookList
+│   │   │   ├── BookList.js
+│   │   │   ├── bookList.scss
+│   │   │   └── index.js
 │   │   ├── BookListItem
+│   │   │   ├── BookListItem.js
+│   │   │   ├── bookListItem.scss
+│   │   │   └── index.js
 │   │   ├── Cart
+│   │   │   ├── Cart.js
+│   │   │   ├── cart.scss
+│   │   │   └── index.js
 │   │   ├── ErorBoundry
+│   │   │   ├── ErorBoundry.js
+│   │   │   └── index.js
 │   │   ├── ErorIndicator
+│   │   │   ├── ErorIndicator.js
+│   │   │   ├── erorIndicator.scss
+│   │   │   └── index.js
 │   │   ├── Filter
+│   │   │   ├── Filter.js
+│   │   │   ├── filter.scss
+│   │   │   └── index.js
 │   │   ├── NotFound
+│   │   │   ├── index.js
+│   │   │   ├── NotFound.js
+│   │   │   └── notFound.scss
 │   │   ├── Routing
+│   │   │   └── PrivateRoute.js
 │   │   ├── ScrollArrow
+│   │   │   ├── index.js
+│   │   │   ├── ScrollArrow.js
+│   │   │   └── scrollArrow.scss
 │   │   ├── SignIn
+│   │   │   ├── index.js
+│   │   │   ├── SignIn.js
+│   │   │   └── signIn.scss
 │   │   └── Spinner
+│   │       ├── index.js
+│   │       ├── Spinner.js
+│   │       └── spinner.scss
 │   ├── pages
 │   │   ├── BookPage.js
 │   │   ├── BooksPage.js
