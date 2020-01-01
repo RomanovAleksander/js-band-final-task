@@ -3,9 +3,8 @@ import {
   FETCH_BOOKS_SUCCESS,
   FETCH_BOOKS_FAILURE,
   SEARCH_BOOKS,
-  FILTER_BOOKS,
-  SIGN_OUT
-} from '../actions/types';
+  FILTER_BOOKS
+} from '../actions/books/types';
 
 const initialState = {
   books: [],
@@ -48,10 +47,6 @@ export const bookList = (state = initialState, action) => {
       return {
         ...state,
         filterPrice: payload.filterPrice
-      };
-    case SIGN_OUT:
-      return {
-        ...initialState,
       };
 
     default:

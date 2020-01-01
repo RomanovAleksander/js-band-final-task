@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchBooks, filterBooks } from '../../actions';
+import { searchBooks, filterBooks } from '../../actions/books/actions';
 
 import './filter.scss';
 

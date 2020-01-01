@@ -1,7 +1,9 @@
 import {
-  SIGN_IN,
+  SIGN_IN_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAILURE,
   SIGN_OUT
-} from '../actions/types';
+} from '../actions/signin/types';
 import { LocalStorageService } from '../services';
 
 const initialState = {
@@ -10,7 +12,9 @@ const initialState = {
     avatar: null,
     token: null
   },
-  isAuthorized: false
+  isAuthorized: false,
+  loading: false,
+  error: null
 };
 
 export const userData = (state, action) => {
@@ -27,12 +31,23 @@ export const userData = (state, action) => {
 
   const { type, payload } = action;
   switch (type) {
-    case SIGN_IN:
+    case SIGN_IN_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case SIGN_IN_SUCCESS:
       return {
         user: {
           ...payload
         },
-        isAuthorized: true
+        isAuthorized: true,
+        loading: false
+      };
+    case SIGN_IN_FAILURE:
+      return {
+        ...initialState,
+        error: payload
       };
     case SIGN_OUT:
       localStorage.clear();
