@@ -3,12 +3,8 @@ import { connect } from 'react-redux';
 import { StoreService } from '../../services';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../ErrorIndicator';
-import {
-  bookLoaded,
-  bookRequested,
-  bookError,
-  bookAddedToCart
-} from "../../actions";
+import { bookAddedToCart } from '../../actions/cart/actions';
+import { bookRequested, bookLoaded, bookError } from '../../actions/book/actions';
 
 import './bookDetails.scss';
 

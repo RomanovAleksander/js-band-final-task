@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import { StoreService } from '../../services';
-import { purchaseRequest, purchaseSuccess, purchaseError } from '../../actions';
+import { purchaseRequest, purchaseSuccess, purchaseError } from '../../actions/cart/actions';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../ErrorIndicator';
 

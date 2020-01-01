@@ -2,7 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { StoreService, LocalStorageService }  from '../../services';
-import { userSignIn } from '../../actions';
+import { signInRequest, signInSuccess, signInError } from '../../actions/signin/actions';
+import { Spinner } from '../Spinner';
+import { ErrorIndicator } from '../ErrorIndicator';
 
 import './signIn.scss';
 
@@ -25,20 +27,32 @@ class SignIn extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { username } = this.state;
-    const { history } = this.props;
+    const { history, signInRequest, signInSuccess, signInError } = this.props;
 
+    signInRequest();
     StoreService.post('/signin', { "username": username })
       .then((data) => {
-        this.props.userSignIn(data);
+        signInSuccess(data);
         LocalStorageService.setItem('userData', data);
         history.push(`/books`);
-      });
+      })
+      .catch((err) => {
+        signInError(err)
+      })
   };
 
   render() {
     const { username, minLength,  maxLength } = this.state;
-    const { isAuthorized } = this.props;
+    const { isAuthorized, loading, error } = this.props;
     const isValid = (username.length >= minLength && username.length <= maxLength) ? 'is-valid' : 'is-invalid';
+
+    if (loading) {
+      return <Spinner/>
+    }
+
+    if (error) {
+      return <ErrorIndicator />
+    }
 
     if (isAuthorized) {
       return <div className="already-authorized">You are already authorized</div>
@@ -81,12 +95,16 @@ class SignIn extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthorized: state.userData.isAuthorized
+    isAuthorized: state.userData.isAuthorized,
+    loading: state.userData.loading,
+    error: state.userData.error
   }
 };
 
 const mapDispatchToProps = {
-  userSignIn
+  signInRequest,
+  signInSuccess,
+  signInError
 };
 
 export default withRouter(

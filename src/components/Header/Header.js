@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userSignOut } from '../../actions';
+import { userSignOut } from '../../actions/signin/actions';
 
 import './header.scss';
 

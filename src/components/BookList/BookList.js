@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StoreService } from '../../services';
-import { booksLoaded, booksRequested, booksError } from '../../actions';
+import { booksRequested, booksLoaded, booksError } from '../../actions/books/actions';
 import { BookListItem } from '../BookListItem';
 import { Spinner } from '../Spinner';
 import { ErrorIndicator } from '../ErrorIndicator';

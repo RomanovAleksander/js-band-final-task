@@ -1,13 +1,14 @@
 import {
   FETCH_BOOK_REQUEST,
   FETCH_BOOK_SUCCESS,
-  FETCH_BOOK_FAILURE,
+  FETCH_BOOK_FAILURE
+} from '../actions/book/types';
+import {
   BOOK_ADDED_TO_CART,
   PURCHASE_REQUEST,
   PURCHASE_SUCCESS,
-  PURCHASE_FAILURE,
-  SIGN_OUT
-} from '../actions/types';
+  PURCHASE_FAILURE
+} from '../actions/cart/types';
 
 const initialState = {
   bookDetails: {
@@ -136,10 +137,6 @@ export const bookAndCart = (state = initialState, action) => {
           orderTotal: newTotal,
           booksInCart: newBooksInCart
         }
-      };
-    case SIGN_OUT:
-      return {
-        ...initialState
       };
 
     default:
