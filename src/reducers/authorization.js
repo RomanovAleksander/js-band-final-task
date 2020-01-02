@@ -38,6 +38,7 @@ export const userData = (state, action) => {
       };
     case SIGN_IN_SUCCESS:
       return {
+        ...state,
         user: {
           ...payload
         },
