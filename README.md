@@ -1,4 +1,4 @@
-### JS Band Store application | Final task
+### JS Band Store application | Final task [![Build Status](https://travis-ci.org/RomanovAleksander/js-band-final-task.svg?branch=master)](https://travis-ci.org/RomanovAleksander/js-band-final-task)
 **Navigation:**
 [Scenarios](https://github.com/RomanovAleksander/js-band-final-task#scenarios), 
 [Installing](https://github.com/RomanovAleksander/js-band-final-task#installing),
