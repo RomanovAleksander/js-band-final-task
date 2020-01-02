@@ -58,8 +58,18 @@ $ npm run deploy - deploy application on gh-pages
 │   └── index.html
 ├── src                    
 │   ├── actions
-│   │   ├── index.js
-│   │   └── types.js
+│   │   ├── book
+│   │   │   ├── actions.js
+│   │   │   └── types.js
+│   │   ├── books
+│   │   │   ├── actions.js
+│   │   │   └── types.js
+│   │   ├── cart
+│   │   │   ├── actions.js
+│   │   │   └── types.js
+│   │   └── signin
+│   │       ├── actions.js
+│   │       └── types.js
 │   ├── components
 │   │   ├── App
 │   │   │   ├── App.js
