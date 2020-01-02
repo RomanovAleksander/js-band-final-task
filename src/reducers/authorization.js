@@ -34,7 +34,8 @@ export const userData = (state, action) => {
     case SIGN_IN_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: null
       };
     case SIGN_IN_SUCCESS:
       return {
@@ -43,7 +44,8 @@ export const userData = (state, action) => {
           ...payload
         },
         isAuthorized: true,
-        loading: false
+        loading: false,
+        error: null
       };
     case SIGN_IN_FAILURE:
       return {

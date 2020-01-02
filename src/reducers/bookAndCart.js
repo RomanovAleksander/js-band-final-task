@@ -71,7 +71,8 @@ export const bookAndCart = (state = initialState, action) => {
         bookDetails: {
           ...state.bookDetails,
           book: {},
-          loading: true
+          loading: true,
+          error: null
         }
       };
     case FETCH_BOOK_SUCCESS:
@@ -81,7 +82,8 @@ export const bookAndCart = (state = initialState, action) => {
           ...state.bookDetails,
           book: payload,
           maxCount: payload.count,
-          loading: false
+          loading: false,
+          error: null
         }
       };
     case FETCH_BOOK_FAILURE:
@@ -99,7 +101,8 @@ export const bookAndCart = (state = initialState, action) => {
         ...initialState,
         cart: {
           ...initialState.cart,
-          loading: true
+          loading: true,
+          error: null
         }
       };
     case PURCHASE_SUCCESS:
@@ -107,7 +110,8 @@ export const bookAndCart = (state = initialState, action) => {
         ...initialState,
         cart: {
           ...initialState.cart,
-          loading: false
+          loading: false,
+          error: null
         }
       };
     case PURCHASE_FAILURE:

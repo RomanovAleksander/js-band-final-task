@@ -22,14 +22,16 @@ export const bookList = (state = initialState, action) => {
       return {
         ...state,
         books: [],
-        loading: true
+        loading: true,
+        error: null
       };
     case FETCH_BOOKS_SUCCESS:
       return {
         ...state,
         books: payload,
         booksQuantity: payload.length,
-        loading: false
+        loading: false,
+        error: null
       };
     case FETCH_BOOKS_FAILURE:
       return {
