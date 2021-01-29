@@ -41,7 +41,8 @@ export const userData = (state, action) => {
       return {
         ...state,
         user: {
-          ...payload
+          ...payload,
+          avatar: `https://api.hello-avatar.com/adorables/100/${payload.username}.png`
         },
         isAuthorized: true,
         loading: false,

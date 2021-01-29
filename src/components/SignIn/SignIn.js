@@ -76,10 +76,10 @@ class SignIn extends React.Component {
                      required />
               <div className="invalid-feedback text-center position-relative">
                 Field is not valid!
-                <img src="https://api.adorable.io/avatars/face/eyes8/nose3/mouth7/dc3545/155" alt="avatar" className="sign-in-avatar invalid-img"/>
+                <img src="https://api.hello-avatar.com/adorables/face/eyes8/nose3/mouth7/dc3545/155" alt="avatar" className="sign-in-avatar invalid-img"/>
               </div>
               <div className="valid-feedback text-center position-relative">
-                <img src="https://api.adorable.io/avatars/face/eyes1/nose3/mouth9/28a745/155" alt="avatar" className="sign-in-avatar valid-img"/>
+                <img src="https://api.hello-avatar.com/adorables/face/eyes1/nose3/mouth9/28a745/155" alt="avatar" className="sign-in-avatar valid-img"/>
               </div>
             </div>
           </label>
